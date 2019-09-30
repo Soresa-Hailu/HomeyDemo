@@ -1,0 +1,84 @@
+<div class="pb-5">
+<app-client-menu></app-client-menu>
+</div>
+<main>
+<div class="pt-5 pb-5">
+ <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form  [formGroup]="registrationForm" (ngSubmit)="registration(registrationForm)" (change)="log(registrationForm)" class="register-form" id="register-form">
+                        <div *ngIf="mainErrorMessage">
+            <p class="alert alert-{{ mainErrorMessage.type }}">{{ mainErrorMessage.message }}</p>
+        </div>
+                            <div class="form-group">
+                                <label for="fname"><i class="fa fa-user"></i></label>
+                               <input type="text" [appInputFormat]="'singleWordFiltercapitalize'" id="fname" formControlName="fname" class="form-control"  placeholder="Enter First Name" required>
+                <small class="text-danger"
+             *ngIf="fname.touched && fname.invalid"  >
+            This field is required</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="lname"><i class="fa fa-user"></i></label>
+                                 <input type="text" [appInputFormat]="'singleWordFiltercapitalize'" id="lname" formControlName="lName" class="form-control" placeholder="Enter Last Name" required>
+                <small class="text-danger"
+             *ngIf="lName.touched && lName.invalid"  >
+            This field is required</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="fa fa-paper-plane-o"></i></label>
+                                 <input type="email" formControlName="email" id="email" class="form-control" placeholder="Enter Email Address" required >
+                    <span *ngIf="email.pending" class="input-icon"><i class="fa fa-spinner fa-spin fa-2x fa-fw" ></i></span>
+                <small class="text-danger"
+                    *ngIf="email.touched && email.invalid"  >
+                    <small *ngIf="email.errors.required" >This field is required</small>
+                    <small *ngIf="email.errors.email" >Please enter a valid email address</small>
+                    <small *ngIf="email.errors.checkEmailAvailability" >This email address is already taken</small>
+                </small>
+                            </div>
+                             <div class="form-group">
+                                <label for="phone"><i class="fa fa-phone"></i></label>
+                                      <input formControlName="phoneNo" id="phone" type="number" (change)="log(phoneNo)"  class="form-control remove-numbr-icn" minlength="10" placeholder="Enter Phone Number" required >
+                <small class="text-danger"
+                    *ngIf="phoneNo.touched && phoneNo.invalid"  >
+                This field is required</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass"><i class="fa fa-lock"></i></label>
+                                <input  type="password" name="registrationPassword" id="pass" formControlName="password" class="form-control" placeholder="Password" required > 
+                <small class="text-danger" *ngIf="registrationPassword.touched && registrationPassword.invalid && registrationPassword.errors.minlength"  >
+                Must be at least 8 characters!
+               </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="re-pass"><i class="fa fa-unlock-alt"></i></label>
+                               <input  type="password" id="re-pass" name="registrationcPassword" formControlName="cPassword"  placeholder="Confirm Password" class="form-control" required >
+                <small class="text-danger"
+                    *ngIf="registrationcPassword.touched && registrationcPassword.invalid"  >
+                This field is required</small>
+
+                <span class="text-danger"
+                    *ngIf="registrationForm.errors && registrationcPassword.touched">    
+                    <small *ngIf="registrationForm.errors.passwordMatch"> Password do not match</small>
+                </span>                       </div>
+                   <div class="form-group">
+                                <input type="checkbox" name="agree-term" formControlName="isTCAccepted" id="agree-term" class="form-control agree-term" />
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="https://termsandconditionsgenerator.com/live.php?token=HzhQGwS2aAHmS113t9584Hcscrl4H1dq" class="term-service">Terms of service</a> and <a href="https://privacypolicygenerator.info/live.php?token=BiYjvktBCyXM3zmlncEkXroySzsFO0o6" class="term-service">Privacy Policy</a></label>
+                            </div>
+                          
+                            <div class="form-group">
+                <button class="btn btn-success form-control btn-rounded" [disabled]="!registrationForm.valid" >Sign up</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="../../../assets/images/signup-image.jpg" alt="sing up image"></figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+</div>
+</main>
+<app-footer-main></app-footer-main>

@@ -1,0 +1,62 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg fixed-top navbar-dark green" [containerInside]="true" >
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" routerLink="/" routerLinkActive="active"><i class="mdi mdi-hospital-marker"></i>Homey</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link waves-light" routerLink="/" routerLinkActive="active" mdbWavesEffect><i class="fa fa-home"></i>Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" routerLink="/local-scoop" routerLinkActive="active" mdbWavesEffect><i class="fa fa-eercast"></i>Local Scoop</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" routerLink="/find-house" routerLinkActive="active" mdbWavesEffect><i class="fa fa-search"></i>Search</a>
+      </li>
+     
+      <!-- Dropdown -->
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+         <i class="fa fa-lightbulb-o"></i>Homey Tips<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/mortgage-calculator" routerLinkActive="active"><i class="fa fa-calculator"></i>Mortgage Calculator</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/loan-calculator" routerLinkActive="active"><i class="fa fa-money"></i>Loan Calculator</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/rent-vs-buy-calculator" routerLinkActive="active"><i class="fa fa-shopping-cart"></i>Rent Vs Buy Calculator</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/affordability-calculator" routerLinkActive="active"><i class="fa fa-barcode"></i>Affordibility Calculator</a>
+          <div class="divider dropdown-divider"></div>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/faq" routerLinkActive="active"><i class="fa fa-question-circle"></i>FAQs</a>
+        </div>
+      </li>
+       <div *ngIf="loginService.isLoggedIn()">
+       <li class="nav-item" *ngIf="userService.currentUser.user.confirmed=='confirmed'">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/client/accepted-homes" routerLinkActive="active">Saved Homes</a>
+      </li>
+      </div>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect *ngIf="!loginService.isLoggedIn()" (click)="openloginModal()"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect *ngIf="!loginService.isLoggedIn()" routerLink="/sign-up" routerLinkActive="active"><i class="fa fa-registered" aria-hidden="true"></i>Sign Up</a>
+      </li>
+   <div *ngIf="loginService.isLoggedIn()">
+
+      <li class="nav-item avatar dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          <span> {{userService.currentUser.user.fname}} </span><i class="fa fa-user"></i></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/client" routerLinkActive="active">My account</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/client/accepted-homes" routerLinkActive="active" *ngIf="userService.currentUser.user.confirmed=='confirmed'">Saved Homes</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/client/house-resume" routerLinkActive="active" *ngIf="userService.currentUser.user.confirmed=='confirmed'">My Rooms For Homey</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/client/like-by-me" routerLinkActive="active" *ngIf="userService.currentUser.user.confirmed=='confirmed'">Liked Houses</a>
+          <a class="dropdown-item waves-light" (click)="loginService.logOut()" mdbWavesEffect><i class="fa fa-sign-out"></i>Log out</a>
+        </div>
+      </li>
+</div>
+    </ul>
+  </links>
+</mdb-navbar>

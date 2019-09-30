@@ -1,0 +1,77 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <div class="nav-link">
+        <div class="user-wrapper">
+          <div class="profile-image">
+            <img src="assets/images/user.jpg" alt="profile image">
+          </div>
+          <div class="text-wrapper">
+            <p class="profile-name">Client</p>
+            <div>
+              <small class="designation text-muted">{{userService.currentUser.user.fname}}</small>
+              <span class="status-indicator online"></span>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-success btn-block">Homey
+          <i class="mdi mdi-home"></i>
+        </button>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="#" routerLinkActive="active">
+        <i class="menu-icon fa fa-desktop" style="color: black"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+   <li class="nav-item" *ngIf="userService.currentUser.user.confirmed=='confirmed'">
+      <a class="nav-link" routerLink="/client/edit-profile" routerLinkActive="active">
+        <i class="menu-icon fa fa-cog" style="color: black"></i>
+        <span class="menu-title">Edit Profile</span>
+      </a>
+   </li>
+   <li class="nav-item" *ngIf="userService.currentUser.user.confirmed=='confirmed'">
+     <a class="nav-link" routerLink="/client/mine-house" routerLinkActive="active">
+       <i class="menu-icon fa fa-address-book-o" style="color: black"></i>
+       <span class="menu-title">My Homey Houses</span>
+     </a>
+   </li>
+  <li class="nav-item" *ngIf="userService.currentUser.user.confirmed=='confirmed'">
+      <a class="nav-link" routerLink="/client/accepted-homes" routerLinkActive="active">
+        <i class="menu-icon fa fa-bank" style="color: black"></i>
+        <span class="menu-title"><span class="badge badge-success ml-1" *ngIf="houses.length>0"> {{houses.length}}</span>Saved Homes</span>
+      </a>
+  </li>
+   <li class="nav-item" *ngIf="userService.currentUser.user.confirmed=='confirmed'">
+      <a class="nav-link" routerLink="/client/rejected-house" routerLinkActive="active">
+        <i class="menu-icon fa fa-trash" style="color: black"></i>
+        <span class="menu-title"><span class="badge badge-danger ml-1" *ngIf="rejections.length>0"> {{rejections.length}}</span>Rejected Houses</span>
+      </a>
+  </li>
+  <li class="nav-item" *ngIf="userService.currentUser.user.confirmed=='confirmed'">
+      <a class="nav-link" routerLink="/client/like-by-me" routerLinkActive="active">
+        <i class="menu-icon fa fa-heart" style="color: red"></i>
+        <span class="menu-title">Liked Homes</span>
+      </a>
+  </li>
+ <li class="nav-item" *ngIf="userService.currentUser.user.confirmed=='confirmed'">
+      <a class="nav-link" routerLink="/client/house-resume" routerLinkActive="active">
+        <i class="menu-icon fa fa-building" style="color: black"></i>
+        <span class="menu-title">Post to Homey</span>
+      </a>
+  </li>
+  <li class="nav-item" *ngIf="userService.currentUser.user.confirmed=='confirmed'">
+      <a class="nav-link" routerLink="/client/notification-preferences" routerLinkActive="active">
+        <i class="menu-icon fa fa-key" style="color: black"></i>
+        <span class="menu-title">Password Preferences</span>
+      </a>
+  </li>
+    <li class="nav-item" *ngIf="userService.currentUser.user.confirmed=='unconfirmed'">
+      <a class="nav-link" routerLink="/client/confirm-password" routerLinkActive="active">
+        <i class="menu-icon fa fa-key" style="color: black"></i>
+        <span class="menu-title">Confirmed</span>
+      </a>
+  </li>
+  </ul>
+</nav>

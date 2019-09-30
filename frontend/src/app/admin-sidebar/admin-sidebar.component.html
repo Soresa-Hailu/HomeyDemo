@@ -1,0 +1,89 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <div class="nav-link">
+        <div class="user-wrapper">
+          <div class="profile-image">
+            <img src="assets/images/user.jpg" alt="profile image">
+          </div>
+          <div class="text-wrapper">
+            <p class="profile-name">Super Admin</p>
+            <div>
+              <small class="designation text-muted">Super Admininstrator</small>
+              <span class="status-indicator online"></span>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-success btn-block">Homey
+          <i class="mdi mdi-home"></i>
+        </button>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active">
+        <i class="menu-icon fa fa-desktop" style="color: black"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/add" routerLinkActive="active">
+        <i class="menu-icon fa fa-user-circle" style="color: black"></i>
+        <span class="menu-title">Add Homey Staff</span>
+      </a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/list" routerLinkActive="active">
+        <i class="menu-icon fa fa-users" style="color: black"></i>
+        <span class="menu-title">List Homey Staff</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/addState" routerLinkActive="active">
+        <i class="menu-icon fa fa-plus-square" style="color: black"></i>
+        <span class="menu-title">Add State</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/listState" routerLinkActive="active">
+        <i class="menu-icon fa fa-toggle-down" style="color: black"></i>
+        <span class="menu-title">List State</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/addCity" routerLinkActive="active">
+        <i class="menu-icon fa fa-space-shuttle" style="color: black"></i>
+        <span class="menu-title">Add City</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/listCity" routerLinkActive="active">
+        <i class="menu-icon fa fa-chevron-circle-down" style="color: black"></i>
+        <span class="menu-title">List City</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/addHouseType" routerLinkActive="active">
+        <i class="menu-icon fa fa-arrows" style="color: black"></i>
+        <span class="menu-title">Add House Type</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/listHouseType" routerLinkActive="active">
+        <i class="menu-icon fa fa-university" style="color: black"></i>
+        <span class="menu-title">List House Type</span>
+      </a>
+    </li>
+   <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/change-password" routerLinkActive="active">
+        <i class="menu-icon fa fa-key" style="color: black"></i>
+        <span class="menu-title">Password Preferences</span>
+      </a>
+  </li>
+   <li class="nav-item">
+<a class="btn nav-link" (click)="loginService.logOutAgent()" routerLinkActive="active">
+    <i class="menu-icon fa fa-sign-out" style="color: black"></i>
+      <span class="menu-title">Sign Out</span>
+     </a>
+</li>
+  </ul>
+</nav>

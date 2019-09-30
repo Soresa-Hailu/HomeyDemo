@@ -1,0 +1,34 @@
+<div class="row">
+  <div *ngFor="let house of houseList" class="col-md-{{blockSize}} pad-btm-15 p-cursor" >
+    <div [class.soldOutBg]="house?.status!= 'available'" class="border-main houBoxHover card">
+      <div class="row border-box-manage">
+        <div  (click)="viewHouse(house._id);" [ngClass]="{
+          'col-md-3 border-right': !blockView,
+          'col-md-12 border-bottom': blockView
+        }" class=""><img src="../../../../assets/images/11.jpg" alt="">
+      </div>
+        <div  (click)="viewHouse(house._id);" [ngClass]="{
+          'col-md-7': !blockView,
+          'col-md-12 text-center': blockView
+        }" class="">
+          <h5>{{house.title}}</h5>
+          <ul style="padding-left: 0px; list-style-type: none;" class="houseLocation">
+            <li><small>{{house.city.name}}, {{house.state.name}}</small></li>
+            <li style="font-size: 14px;" > {{house.type.title}} <b>|</b> {{ getFormattedDate(house.updatedOn) }}</li>
+          </ul>
+          <p>{{house.description}}</p>
+        </div>
+        <div *ngIf="loginService.isLoggedIn() && house?.userId?._id == userService?.currentUser?.user?._id" [ngClass]="{
+            'col-md-2': !blockView,
+            'col-md-12 text-center': blockView
+          }">
+          <button [class.btn-block]="!blockView" routerLink="/users/house/edit/{{house._id}}" class="btn btn-info btn-sm">Edit House</button>
+          <button [class.btn-block]="!blockView" *ngIf="house?.status == 'available';" (click)="markAsSold(house?._id, house?.houseFor)" class="btn btn-success btn-block"> {{ house?.houseFor == 'sell' ? 'Mark as Sold' : 'Mark as Acquired' }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h4 *ngIf="houseList.length <= 0" class="text-center text-warning" >No data found</h4>
+</div>

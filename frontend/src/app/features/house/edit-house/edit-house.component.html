@@ -1,0 +1,118 @@
+<h3 class="container text-center text-danger">
+  <button (click)="locationBack()" class="float-left btn btn-primary btn-sm">Back</button>
+  <span>Edit Property-</span> 
+</h3>
+<!-- <p>{{ f.value | json }}</p> -->
+<div class="container border-main border-box-manage">
+  <form #f="ngForm" (ngSubmit)="submitForm(f.value)" >
+    <h4>Property Info- </h4>
+    <hr class="hr">
+    <div class="form-group">
+      <label for="">House Title:</label>
+      <input type="text" [(ngModel)]="houseDetail.title" class="form-control"
+        #title="ngModel" name="title" (change)="log(title.value)"
+       placeholder="Enter house's title" required >
+       <!-- [(ngModel)]="newPropertyData.title" -->
+      <small class="text-danger" *ngIf="title.touched && title.invalid">
+        This field is required</small>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-4">
+            <label for=""> House For: </label> <br>
+            <label> <input type="radio" [(ngModel)]="houseDetail.houseFor" 
+               #for="ngModel" value="sell" required name="for" > Sell </label> &nbsp;
+            <label> <input type="radio" [(ngModel)]="houseDetail.houseFor"
+               #for="ngModel" value="rent" required name="for" > Rent </label>
+
+            <small class="text-danger" *ngIf="for.touched && for.invalid">
+              This field is required</small>
+        </div>
+        <div class="col-8">
+            <label for="">House Type:</label>
+            <select required name="type" 
+             [(ngModel)]="houseDetail.type._id" #type="ngModel" 
+            class="custom-select">
+              <option value="">Select House Type</option>
+              <option *ngFor="let house of houseTypeList" value="{{house._id}}"
+              [selected]="houseDetail.type['_id']" >{{house.title}}</option>
+            </select>
+            
+            <small class="text-danger" *ngIf="type.touched && type.invalid">
+              This field is required</small>
+        </div>
+      </div>
+    </div>  
+    
+    <h4>Location -</h4>
+    <hr class="hr">
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+          <label for="">State:</label>
+          <select name="state" [(ngModel)]="houseDetail.state._id" #state="ngModel" (change)="getCityList(state.value)"  required class="custom-select">
+            <option value="">Select State</option>
+            <option *ngFor="let state of stateList" [selected]="houseDetail.state._id" value="{{state._id}}">{{state.name}}</option>
+          </select>
+          <small class="text-danger" *ngIf="state.touched && state.invalid">
+            This field is required</small>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="">City: <small *ngIf="FetchingCityList" ><i class="fa fa-refresh fa-spin fa-fw"></i></small></label>
+            <select name="city" [(ngModel)]="houseDetail.city._id" #city="ngModel" required class="custom-select">
+                <option value="">Select City</option>
+                <option *ngFor="let city of cityList" [selected]="houseDetail.city._id" value="{{city._id}}">{{city.name}}</option>
+            </select>
+            <small class="text-danger" *ngIf="city.touched && city.invalid">
+              This field is required</small>
+        </div>
+        
+    </div>
+    
+    <h4>Other Information -</h4>
+    <hr class="hr">
+
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="">Description: </label>
+        <textarea name="description"  required
+        [(ngModel)]="houseDetail.description" #description="ngModel"
+        class="form-control" cols="30" rows="5"></textarea>
+
+        <small class="text-danger" *ngIf="description.touched && description.invalid">
+          This field is required</small>
+      </div>
+      <div class="form-group col-md-12">
+        <label for="">House Complete Address</label>
+        <input type="text" required name="address" [(ngModel)]="houseDetail.address" #address="ngModel" placeholder="Enter complete House's Address"  class="form-control">
+
+        <small class="text-danger" *ngIf="address.touched && address.invalid">
+          This field is required</small>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="">Email:</label>
+        <input type="text" placeholder="Enter Email" name="email" class="form-control"
+        [(ngModel)]="houseDetail.email" #email="ngModel" required>
+        
+        <small class="text-danger" *ngIf="email.touched && email.invalid">
+          This field is required</small>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="">Phone Number: </label>
+        <input type="text" required name="phoneNo"
+        [(ngModel)]="houseDetail.phoneNo" #phoneNo="ngModel" 
+          placeholder="Enter Phone Number" class="form-control">
+
+          <small class="text-danger" *ngIf="phoneNo.touched && phoneNo.invalid">
+            This field is required</small>
+      </div>
+
+    </div>
+
+    <button 
+    [disabled] = "f.invalid"
+    class="btn btn-danger btn-block">Post a New House</button>
+
+  </form>
+</div>

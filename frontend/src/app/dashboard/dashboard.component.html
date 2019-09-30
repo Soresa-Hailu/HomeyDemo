@@ -1,0 +1,232 @@
+<div class="row">
+  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+    <div class="card card-statistics">
+      <div class="card-body">
+        <div class="clearfix">
+          <div class="float-left">
+            <i class="mdi mdi-cube text-danger icon-lg"></i>
+          </div>
+          <div class="float-right">
+            <p class="mb-0 text-right">Available Houses</p>
+            <div class="fluid-container">
+              <h3 class="font-weight-medium text-right mb-0">{{available.length}}</h3>
+            </div>
+          </div>
+        </div>
+        <p class="text-muted mt-3 mb-0">
+          <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> All available houses in Homey
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+    <div class="card card-statistics">
+      <div class="card-body">
+        <div class="clearfix">
+          <div class="float-left">
+            <i class="fa fa-home text-warning icon-lg"></i>
+          </div>
+          <div class="float-right">
+            <p class="mb-0 text-right">Sold Houses</p>
+            <div class="fluid-container">
+              <h3 class="font-weight-medium text-right mb-0">{{sold.length}}</h3>
+            </div>
+          </div>
+        </div>
+        <p class="text-muted mt-3 mb-0">
+          <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> House sold by Homey
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+    <div class="card card-statistics">
+      <div class="card-body">
+        <div class="clearfix">
+          <div class="float-left">
+            <i class="fa fa-camera-retro text-success icon-lg"></i>
+          </div>
+          <div class="float-right">
+            <p class="mb-0 text-right">Rented Houses</p>
+            <div class="fluid-container">
+              <h3 class="font-weight-medium text-right mb-0">{{rented.length}}</h3>
+            </div>
+          </div>
+        </div>
+        <p class="text-muted mt-3 mb-0">
+          <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> House Rented by homey
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+    <div class="card card-statistics">
+      <div class="card-body">
+        <div class="clearfix">
+          <div class="float-left">
+            <i class="mdi mdi-account-location text-info icon-lg"></i>
+          </div>
+          <div class="float-right">
+            <p class="mb-0 text-right">Users</p>
+            <div class="fluid-container">
+              <h3 class="font-weight-medium text-right mb-0">{{users.length}}</h3>
+            </div>
+          </div>
+        </div>
+        <p class="text-muted mt-3 mb-0">
+          <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Active Homey users
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+    <div class="card card-statistics">
+      <div class="card-body">
+        <div class="clearfix">
+          <div class="float-left">
+            <i class="fa fa-group text-success icon-lg"></i>
+          </div>
+          <div class="float-right">
+            <p class="mb-0 text-right">Homey Staff</p>
+            <div class="fluid-container">
+              <h3 class="font-weight-medium text-right mb-0">{{agents.length}}</h3>
+            </div>
+          </div>
+        </div>
+        <p class="text-muted mt-3 mb-0">
+          <i class="fa fa-ellipsis-h mr-1" aria-hidden="true"></i> Number of Homey Staff
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+    <div class="card card-statistics">
+      <div class="card-body">
+        <div class="clearfix">
+          <div class="float-left">
+            <i class="fa fa-gears text-danger icon-lg"></i>
+          </div>
+          <div class="float-right">
+            <p class="mb-0 text-right"># of HouseTypes</p>
+            <div class="fluid-container">
+              <h3 class="font-weight-medium text-right mb-0">{{houseTypes.length}}</h3>
+            </div>
+          </div>
+        </div>
+        <p class="text-muted mt-3 mb-0">
+          <i class="fa fa-headphones mr-1" aria-hidden="true"></i> Available house types in Homey
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+    <div class="card card-statistics">
+      <div class="card-body">
+        <div class="clearfix">
+          <div class="float-left">
+            <i class="fa fa-globe text-warning icon-lg"></i>
+          </div>
+          <div class="float-right">
+            <p class="mb-0 text-right">Available Cities</p>
+            <div class="fluid-container">
+              <h3 class="font-weight-medium text-right mb-0">{{states.length}}</h3>
+            </div>
+          </div>
+        </div>
+        <p class="text-muted mt-3 mb-0">
+          <i class="fa fa-gears mr-1" aria-hidden="true"></i> Cities we cover in Ethiopia
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+    <div class="card card-statistics">
+      <div class="card-body">
+        <div class="clearfix">
+          <div class="float-left">
+            <i class="fa fa-university text-primary icon-lg"></i>
+          </div>
+          <div class="float-right">
+            <p class="mb-0 text-right">Available Subcities</p>
+            <div class="fluid-container">
+              <h3 class="font-weight-medium text-right mb-0">{{cities.length}}</h3>
+            </div>
+          </div>
+        </div>
+        <p class="text-muted mt-3 mb-0">
+          <i class="fa fa-hdd-o mr-1" aria-hidden="true"></i> Available sub cities in Ethiopia
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-4">Claimed Houses List With The Corresponding Agents</h5>
+        <div class="fluid-container">
+          <div class="row ticket-card mt-3" *ngFor="let claims of claimed">
+            <div class="col-md-1">
+              <img class="img-sm rounded-circle mb-4 mb-md-0" src="{{commonService.base_url}}/house/showGFSImage/{{ claims.images[0] }}" alt="profile image">
+            </div>
+            <div class="ticket-details col-md-9">
+              <div class="d-flex">
+                <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">{{claims.state.name}}, {{claims.city.name}}, {{claims.address}}</p>
+                <p class="mb-0 ellipsis">{{claims.type.title}}</p>
+              </div>
+              <p class="text-gray ellipsis mb-2"><i class="fa fa-hand-o-right" style="color: #FFD700"></i> <u>Claimed By</u>: {{claims.claimId.email}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-category">Realtor List</h5>
+          <h4 class="card-title">Top Sellers and Renters Realtors</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Rank
+                </th>
+                <th>
+                  First Name
+                </th>
+                <th>
+                  Last Name
+                </th>
+                <th class="text-center">
+                  Number Of Sells/Rents
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let thropy of throphies">
+                  <td>
+                    <i class="fa fa-trophy" style="color: #FFD700"></i>
+                  </td>
+                  <td>
+                    {{thropy.fname}}
+                  </td>
+                  <td>
+                    {{thropy.lname}}
+                  </td>
+                  <td class="text-center">
+                    {{thropy.numberOfSell}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>

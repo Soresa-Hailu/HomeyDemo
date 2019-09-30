@@ -1,0 +1,74 @@
+<div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                  <i class="fa fa-meh-o"></i>
+                  </div>
+                  <p class="card-category">Claimed By You</p>
+                  <h3 class="card-title">{{claimed.length}}</h3>
+                    <small>Houses</small>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="fa fa-paper-plane"></i>
+                    <a routerLink="/realtor/house-for-claim">Go for detail...</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="fa fa-pie-chart"></i>
+                  </div>
+                  <p class="card-category">Sold In Your Area</p>
+                  <h3 class="card-title">{{sold.length}}</h3>
+                  <small>Houses</small>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="fa fa-paper-plane-o"></i>
+                    <a routerLink="/realtor/sold-house">Go for detail...</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                  <div class="card-icon">
+                  <i class="fa fa-shopping-basket"></i>
+                  </div>
+                  <p class="card-category">Rented In Your Area</p>
+                  <h3 class="card-title">{{rented.length}}</h3>
+                  <small>Houses</small>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="fa fa-plane"></i>
+                    <a routerLink="/realtor/rented-house">Go for detail...</a>  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                  <div class="card-icon">
+                    <i class="fa fa-ship"></i>
+                  </div>
+                  <p class="card-category">Houses In your Area</p>
+                  <h3 class="card-title">{{selled.length}}</h3>
+                  <small>Houses</small>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="fa fa-rocket"></i>
+                    <a routerLink="/realtor/house-for-sell">Go for detail...</a>  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>

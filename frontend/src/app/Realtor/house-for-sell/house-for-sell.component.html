@@ -1,0 +1,16 @@
+<div class="row">
+<div class="col-md-4 grid-margin stretch-card" *ngFor="let house of houses">
+  <div class="card" >
+    <img class="card-img-top" src="{{commonService.base_url}}/house/showGFSImage/{{ house.images[0] }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><b>Birr {{house.price}}</b></h5>
+      <p class="card-text">{{house.title}}</p>
+      <p class="card-text"><i class="fa fa-bath"></i> {{house.bathRooms}}, <i class="fa fa-bed"></i> {{house.bedRooms}}, <i class="fa fa-building"></i> {{(house.length)*(house.breadth)}}sqft</p>
+      <p class="card-text"><small class="text-muted">For {{house.houseFor}}, {{getFormattedDate(house.createdOn)}}</small></p>
+       <button *ngIf="house?.claim == 'unclaimed';" (click)="markAsClaimed(house?.slug, realtorService.currentRealtor.agent._id,  house?.claim)"
+            class="btn btn-success btn-sm btn-rounded"><small>
+              {{ house?.claim == 'unclaimed' ? 'Claim' : 'UnClaim' }}</small></button>
+    </div>
+  </div>
+</div>
+</div>

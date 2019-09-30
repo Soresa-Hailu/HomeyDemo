@@ -1,0 +1,30 @@
+<h3 class="text-center text-success">Add a New House Category</h3>
+<div class="container border-main border-box-manage card">
+  <form class="" [formGroup]="createForm"  (ngSubmit)="registration(createForm)" (change)="log(createForm)">
+    <h4 class="text-center text-success">House Type</h4>
+<div *ngIf="mainErrorMessage">
+            <p class="alert alert-{{ mainErrorMessage.type }}">{{ mainErrorMessage.message }}</p>
+        </div>
+    <hr class="hr">
+    <div class="form-group">
+      <label for="" class="col-md-4">title</label>
+      <input type="text" [appInputFormat]="'singleWordFiltercapitalize'" formControlName="title"
+        placeholder="Enter The Name of The Title of the House" class="form-control" style="border-radius: 1rem" required >
+      <small class="text-danger" *ngIf="title.touched && title.invalid">
+        Title is Required</small>
+    </div>
+    <div class="form-group">
+             <label for="">Type</label>
+        <select name="type" formControlName="type" class="custom-select border-success" style="border-radius: 1rem">
+          <option value="">Select Type</option>
+          <option value="residential">Residential</option>
+          <option value="commericial">Commericial</option>
+          <option value="land">Land</option>
+          <option value="other">Other</option>
+        </select>
+        <small class="text-danger" *ngIf="type.touched && type.invalid">
+          Please Specify the Agent Type</small>
+    </div>
+    <button [disabled]="!createForm.valid" class="btn btn-success btn-block btn-rounded"><i class="fa fa-plus" style="color: #800000"></i>Add A New House Type</button>
+  </form>
+</div>

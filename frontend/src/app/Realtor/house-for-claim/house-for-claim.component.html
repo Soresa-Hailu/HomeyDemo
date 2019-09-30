@@ -1,0 +1,22 @@
+<div class="row">
+<div class="col-md-4 grid-margin stretch-card" *ngFor="let house of houses">
+  <div class="card">
+    <img class="card-img-top" src="{{commonService.base_url}}/house/showGFSImage/{{ house.images[0] }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><b>Birr {{house.price}}</b></h5>
+      <p class="card-text">{{house.title}}</p>
+      <p class="card-text"><i class="fa fa-bath"></i> {{house.bathRooms}}, <i class="fa fa-bed"></i> {{house.bedRooms}}, <i class="fa fa-building"></i> {{(house.length)*(house.breadth)}}sqft</p>
+      <p class="card-text"><small class="text-muted">{{getFormattedDate(house.createdOn)}}</small></p>
+       <button *ngIf="house?.status == 'available';" (click)="markAsSold(house?.slug, realtorService.currentRealtor.agent._id, house?.houseFor)"
+            class="btn btn-success btn-sm btn-rounded"><small>
+              {{ house?.houseFor == 'sell' ? 'Mark as Sold' : 'Mark as Acquired' }}</small></button>
+        <button *ngIf="house?.claim == 'claimed';" (click)="markAsUnClaimed(house?.slug, house?.claim)"
+            class="btn btn-primary btn-sm btn-rounded"><small>
+              {{ house?.claim == 'claimed' ? 'UnClaim' : 'Claim' }}</small></button>
+       <button *ngIf="house?.deal == 'break';" (click)="markAsExpired(house?._id, house?.status)"
+            class="btn btn-success btn-sm btn-rounded"><small><i class="fa fa-ban" style="color: red"></i>Mark As Inactive</small></button>
+    </div>
+  </div>
+</div>
+</div>
+

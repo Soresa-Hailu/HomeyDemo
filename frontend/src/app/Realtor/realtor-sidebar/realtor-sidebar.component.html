@@ -1,0 +1,75 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <div class="nav-link">
+        <div class="user-wrapper">
+          <div class="profile-image">
+            <img src="assets/images/user.jpg" alt="profile image">
+          </div>
+          <div class="text-wrapper">
+            <p class="profile-name">Realtor</p>
+            <div>
+              <small class="designation text-muted">Realtor</small>
+              <span class="status-indicator online"></span>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-success btn-block">Homey
+          <i class="mdi mdi-home"></i>
+        </button>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/realtor/realtor-main" routerLinkActive="active">
+        <i class="menu-icon fa fa-desktop" style="color: black"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+  <li class="nav-item">
+     <a class="nav-link" routerLink="/realtor/house-for-sell"
+routerLinkActive="active">
+      <i class="menu-icon fa fa-home" style="color: black"></i>
+      <span class="menu-title">Available House In My Area</span>
+     </a>
+ </li>
+  <li class="nav-item">
+     <a class="nav-link" routerLink="/realtor/chat-client"
+routerLinkActive="active">
+      <i class="menu-icon mdi mdi mdi-bell" style="color: black"></i>
+      <span class="menu-title">Request By Client<span class="badge badge-danger ml-1" *ngIf="requests.length>0"> {{requests.length}} </span></span>
+     </a>
+ </li>
+ <li class="nav-item">
+     <a class="nav-link" routerLink="/realtor/house-for-claim"
+routerLinkActive="active">
+      <i class="menu-icon fa fa-suitcase" style="color: black"></i>
+      <span class="menu-title">Claimed Houses</span>
+     </a>
+ </li>
+ <li class="nav-item">
+     <a class="nav-link" routerLink="/realtor/sold-house"
+routerLinkActive="active">
+      <i class="menu-icon fa fa-check-circle" style="color: black"></i>
+      <span class="menu-title">Sold House</span>
+     </a>
+ </li> 
+ <li class="nav-item">
+    <a class="nav-link" routerLink="/realtor/rented-house" routerLinkActie="active">
+      <i class="menu-icon fa fa-check-square" style="color: black"></i>
+        <span class="menu-title">Rented House</span>
+    </a>
+ </li>
+<li class="nav-item">
+      <a class="nav-link" routerLink="/realtor/realtor-password" routerLinkActive="active">
+        <i class="menu-icon fa fa-key" style="color: black"></i>
+        <span class="menu-title">Password Preferences</span>
+      </a>
+  </li>
+   <li class="nav-item">
+<a class="btn nav-link" (click)="loginService.logOutAgentRealtor()" routerLinkActive="active">
+    <i class="menu-icon fa fa-sign-out" style="color: black"></i>
+      <span class="menu-title">Sign Out</span>
+     </a>
+</li>
+  </ul>
+</nav>

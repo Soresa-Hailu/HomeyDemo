@@ -1,0 +1,221 @@
+*{
+    margin: 0;
+    padding:0;
+    font-family: tahoma, sans-serif;
+    box-sizing: border-box;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 20px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+  
+  /* Handle */
+
+
+
+
+.chatbox{
+    width:500px;
+    min-width: 390px;
+    height: 800px;
+    background: rgb(229, 229, 229);
+    padding: 5px;
+    padding-right: 3px;
+    padding-top: 25px;
+    border-radius: 10px;
+    margin:50px auto;
+    box-shadow: 0 3px  #ccc;
+}
+
+.chatlogs{
+    padding: 10px;
+    width:100%;
+    height: 450px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-right:20px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.chatlogs::-webkit-scrollbar{
+    width:10px;
+    color:red;
+    margin:20px auto;
+    overflow: hidden;
+}
+
+.chatlogs::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background:rgba(3, 68, 112, 0.603)
+}
+
+.chat{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.chat .user-photo{
+    width:60px;
+    height: 60px;
+    background: #ccc;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.chat .user-photo img{
+    width:100%;
+    height: 100%;
+}
+
+.chat .chat-message{
+    width: 80%;
+    padding:15px;
+    margin:5px 10px 0px;
+    border-radius: 10px;
+    color:#fff;
+    font-size:20px;
+}
+
+.freind .chat-message{
+    background: #1adda4;
+}
+
+.self .chat-message{
+    background:#1ddced;
+    order: -1;
+}
+
+.chat-form{
+    margin-top:20px;
+    display:flex;
+    align-items:flex-start;
+}
+
+.chat-form textarea{
+    background: #fbfbfb;
+    width: 75%;
+    height: 50px;
+    border: 2px solid #eee;
+    border-radius: 3px;
+    resize: none;
+    padding: 10px;
+    font-size: 18px;
+    color:#333;
+}
+
+.chat-form textarea::-webkit-scrollbar{
+    width:10px;
+    color:red;
+    margin:20px auto;
+    overflow: hidden;
+}
+
+.chat-form textarea::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background:rgba(3, 68, 112, 0.603)
+}
+.chat-form textarea{
+    background:#fff;
+}
+
+.chat-form button{
+    //padding:   5px 15px;
+    font-size: 30px;
+    color: #fff;
+    border: none;
+    //width: 50px;
+    margin: 0px 10px;
+    //border-radius: 3px;
+    cursor: pointer;
+
+    -webkit-transition: background .2s ease;
+    -moz-transition: background .2s ease;
+    -o-transition: background .2s ease;
+}
+
+.logout:hover{
+    border-radius: 8px;
+}
+
+
+// css for the newly updated chat
+
+
+.chat
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.left .chat-body
+{
+    margin-left: 60px;
+}
+
+.chat li.right .chat-body
+{
+    margin-right: 60px;
+}
+
+
+.chat li .chat-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+    overflow-y: scroll;
+    height: 250px;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}

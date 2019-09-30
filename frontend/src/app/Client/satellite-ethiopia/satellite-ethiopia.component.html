@@ -1,0 +1,25 @@
+<div class="pb-5">
+<app-client-menu></app-client-menu>
+</div>
+<main>
+<div class="container pt-3 pb-3">
+<agm-map  [zoom]="15" [latitude]="9.0362" [longitude]="38.7630" [mapTypeId]="'hybrid'" style="height: 500px">
+<div *ngFor="let house of houses">
+<agm-marker
+ [latitude]="house.latitude"
+ [longitude]="house.longitude">
+ <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
+      <ng-template>
+        <img class="w-100 img-thumbnail" src="{{commonService.base_url}}/house/showGFSImage/{{house.images[0]}}" alt="image for google map">
+        <b>{{house.title}}</b>, <i class="fa fa-building"></i> {{(house.length)*(house.breadth)}} sqft, <i class="fa fa-bath"></i>{{house.bathRooms}}, <i class="fa fa-bed"></i>{{house.bedRooms}}
+        <ngb-rating [(rate)]="house.rating" [readonly]=true class="rating"></ngb-rating>
+      <a [routerLink]="['/view-house', house._id, house.city]" class="btn btn-rounded btn-success"><i class="fa fa-eye"></i></a>
+      </ng-template>
+    </agm-snazzy-info-window>
+ 
+ </agm-marker>
+</div>
+</agm-map>
+</div>
+</main>
+<app-footer-main></app-footer-main>

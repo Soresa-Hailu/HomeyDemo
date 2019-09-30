@@ -1,0 +1,45 @@
+
+
+        <!-- Sing in  Form For Homey Staffs-->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="../../assets/images/signin-image.jpg" alt="sing up image"></figure>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign up</h2>
+  <div *ngIf="alertMessage.message" class="alert alert-{{ alertMessage.type }}">
+    {{ alertMessage.message }}
+  </div>
+                        <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)" class="register-form" id="login-form">
+                            <div class="form-group">
+                                <input  type="text" id="your_name"  formControlName="email" class="form-control" placeholder="Email"/>
+ <small class="text-danger" *ngIf="email.touched && email.invalid">
+        <small *ngIf="email.errors.required" >Email is required</small>
+                    <small *ngIf="email.errors.email" >Please enter a valid email address</small>
+                    <small *ngIf="email.errors.checkAgentEmailAvailability" >This email address is already taken</small>
+</small>                         
+  </div>
+                            <div class="form-group">
+
+                             <show-hide-password size="xs">  <input type="password" name="password" id="your_pass" formControlName="password" class="from-control" placeholder="Password"/>
+</show-hide-password>
+ <small class="text-danger" *ngIf="password.touched && password.invalid">
+
+        This field is required</small>
+                            </div>
+<div class="form-group">
+       <button  class="btn btn-success btn-block btn-rounded from-control" [disabled]="!loginForm.valid || loginCheck"><i class="fa fa-sign-in" style="color: #800000"></i>Login
+<i *ngIf="loginCheck" class="fa fa-spinner fa-pulse fa-fw"></i>
+   </button>
+
+                        </div>
+</form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+

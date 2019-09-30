@@ -1,0 +1,231 @@
+<h3 class="text-center text-success">Post a New House</h3>
+<!-- <p>{{ f.value | json }}</p> -->
+<div class="container border-main border-box-manage card">
+  <form #f="ngForm" (ngSubmit)="submitForm(f)" enctype="multipart/form-data">
+    <h4 class="text-center text-success">House Information</h4>
+    <hr class="hr">
+    <div class="form-group">
+      <label for=""> Upload images: <small class="text-info">(Auto-generated)</small> <small *ngIf="imgUrls.length;"
+          (click)="imgUrls.length = 0;" class="p-cursor text-primary">(remove all)</small></label> <br>
+      <div *ngIf="!imgUrls.length; else imgBOx" class="dropbox">
+        <input type="file" multiple name="uploadFieldName"
+          (change)="filesChange($event.target.name, $event.target.files)" accept="image/*" #photos>
+        <p *ngIf="currentStatus === STATUS_INITIAL">
+          <i class="fa fa-download" style="font-size: 48px; color: gold"></i>
+          <small>upload upto 10 photos (or else it will be ignored)</small>
+        </p>
+        <!-- <p *ngIf="currentStatus === STATUS_SAVING">
+          Uploading {{ photos.files.length }} files...
+        </p> -->
+      </div>
+      <ng-template #imgBOx>
+        <span class="singlImg" *ngFor="let img of imgUrls">
+          <img src="{{img.path}}" style="max-width: 150px; margin-right: 10px;" alt="img">
+          <i (click)="removeSinglePic(img);" class="fa fa-times p-cursor" aria-hidden="true"></i>
+        </span>
+      </ng-template>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-4">
+        <label for="">House For:</label>
+          <input type="text" ngModel #houseFor="ngModel" name="houseFor" required name="houseFor" [value]="clienthouses.houseFor" class="form-control form-field-small">
+        </div>
+        <div class="col-4">
+          <label for="">House Type:</label>
+            <input type="text"  ngModel #Proptype="ngModel" name="Proptype" required placeholder="House Type"
+              style="border-radius: 1rem" [value]="clienthouses.type" class="form-control form-field-small">
+ 
+        </div>
+        <div class="col-4">
+          <label for="">Enter Total Amount <small class="text-primary">(optional)</small> </label>
+          <input type="number" name="price" ngModel #price="ngModel" class="form-control" placeholder="Enter the price" style="border-radius: 1rem" [value]="clienthouses.price" required>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="">Want Homey Agent? </label>
+            <input type="text" ngModel #wantAgent="ngModel" name="wantAgent" required name="wantAgent" [value]="clienthouses.wantAgent" class="form-control from-field-small">
+         </div>
+    <h5>Additional Data -</h5>
+    <hr class="hr">
+
+    <div class="form-row form-group">
+      <div class="col-md-6">
+        <p>Plot Dimensions - </p>
+        <div class="row">
+          <div class="col-md-3">
+            <small>Length (in feet)</small>
+            <input type="number" min="0" ngModel #length="ngModel" name="length" required placeholder="Plot length"
+              style="border-radius: 1rem" [value]="clienthouses.length" class="form-control form-field-small">
+          </div>
+          <div class="col-md-3">
+            <small>Breadth (in feet)</small>
+            <input type="number" min="0" ngModel #breadth="ngModel" name="breadth" required placeholder="Plot breadth"
+              style="border-radius: 1rem" [value]="clienthouses.breadth" class="form-control form-field-small">
+          </div>
+          <div class="col-md-6">
+            <p>Total-</p>
+              {{ (clienthouses.length) * (clienthouses.breadth) }} sqft
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+   <h4>Location -</h4>
+    <hr class="hr">
+
+    <div class="form-row">
+      <div class="form-group col-md-3">
+       <label for="">State:</label>
+            <input type="text"  ngModel #state="ngModel" name="state" required placeholder="State"
+              style="border-radius: 1rem" [value]="clienthouses.state" class="form-control form-field-small">
+          
+          
+      </div>
+      <div class="form-group col-md-3">
+      <label for="">City:</label>
+            <input type="text"  ngModel #city="ngModel" name="city" required placeholder="City"
+              style="border-radius: 1rem" [value]="clienthouses.city" class="form-control form-field-small">
+      </div>
+      
+    
+    </div>
+      <h4>The House and Its Surroundings</h4>
+    <hr class="hr">
+
+    <div class="form-row">
+     <div class="col-md-3">
+            <small>Bed Rooms</small>
+            <input type="number" min="0" ngModel #bedRooms="ngModel" name="bedRooms" required placeholder="Number of bed rooms"
+              style="border-radius: 1rem" [value]="clienthouses.bedRooms" class="form-control form-field-small">
+          </div>
+          <div class="col-md-3">
+            <small>Bath Rooms</small>
+            <input type="number" min="0" ngModel #bathRooms="ngModel" name="bathRooms" required placeholder="Number of bath rooms"
+              style="border-radius: 1rem" [value]="clienthouses.bathRooms" class="form-control form-field-small">
+          </div>
+    </div>
+  <div class="form-row">
+    <div class="col-md-3">
+            <small>Number of Schools</small>
+            <input type="number" min="0" ngModel #numberOfSchools="ngModel" name="numberOfSchools" required placeholder="Number of schools"
+              style="border-radius: 1rem" class="form-control form-field-small">
+          </div>
+          <div class="col-md-3">
+            <small>Number Of Of Hospitals</small>
+            <input type="number" min="0" ngModel #numberOfHospitals="ngModel" name="numberOfHospitals" required placeholder="Number of hospitals"
+              style="border-radius: 1rem" class="form-control form-field-small">
+          </div>
+          <div class="col-md-3">
+            <small>Number Of Of Shop and eat</small>
+            <input type="number" min="0" ngModel #numberOfShop="ngModel" name="numberOfShop" required placeholder="numberOfShop"
+              style="border-radius: 1rem" class="form-control form-field-small">
+          </div>
+    </div>
+     <div class="form-row">
+    <div class="col-md-3">
+          <label for="">Owner <small class="text-primary">(optional)</small> </label>
+            <input type="text"  ngModel #owner="ngModel" name="owner" required placeholder="The vendor of the house"
+              style="border-radius: 1rem" [value]="clienthouses.owner" class="form-control form-field-small">
+          </div>
+          <div class="col-md-3">
+          <label for="">Owner Address <small class="text-primary">(optional)</small> </label>
+            <input type="text"  ngModel #ownerAddress="ngModel" name="ownerAddress" required placeholder="The Address of the owner"
+              style="border-radius: 1rem" [value]="clienthouses.ownerAddress" class="form-control form-field-small">
+          </div>
+    </div>
+    <h4>Other Information -</h4>
+    <hr class="hr">
+
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="">Description: <small class="text-primary">({{ 500 - description.value?.length | number }})</small>
+        </label>
+        <textarea name="description" required [appInputFormat]="'capitalize'" ngModel #description="ngModel" class="form-control" resize="none"
+          cols="30" maxlength="500" [value]="clienthouses.description" style="border-radius: 1rem" rows="5"></textarea>
+
+        <small class="text-danger" *ngIf="description.touched && description.invalid">
+          This field is required</small>
+      </div>
+      <div class="form-group col-md-12">
+        <label for="">Property Complete Address:</label>
+        <input type="text" required [appInputFormat]="'capitalize'" name="address" ngModel #address="ngModel"
+          style="border-radius: 1rem" placeholder="Enter complete Property's Address" class="form-control">
+
+        <small class="text-danger" *ngIf="address.touched && address.invalid">
+          This field is required</small>
+      </div>
+        <div class="form-group col-md-4">
+        <label for="">Latitude: </label>
+        <input type="text" ngModel #latitude="ngModel" required name="latitude" placeholder="Enter The Latitude"
+          style="border-radius: 1rem"  class="form-control">
+        <small class="text-danger" *ngIf="latitude.touched && latitude.invalid">
+          This field is required</small>
+      </div>
+   <div class="form-group col-md-4">
+        <label for="">Longitude: </label>
+        <input type="text" ngModel #longitude="ngModel" required name="longitude" placeholder="Enter The Longitude"
+          style="border-radius: 1rem" class="form-control">
+        <small class="text-danger" *ngIf="longitude.touched && longitude.invalid">
+          This field is required</small>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="">Email:</label>
+        <input type="text" placeholder="Enter Email" name="email" ngModel #email="ngModel" required
+          style="border-radius: 1rem" [value]="clienthouses.email" class="form-control">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="">Phone Number: </label>
+        <input type="text" ngModel #phoneNo="ngModel" required name="phoneNo" placeholder="Enter Phone Number"
+          style="border-radius: 1rem" [value]="clienthouses.phoneNo" class="form-control">
+      </div>
+    </div>
+      <h4 class="text-center">Rating Information -</h4>
+    <hr class="hr">
+       <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="">Safe</label>
+        <select name="safe" ngModel #safe="ngModel" required
+          class="custom-select" style="border-radius: 1rem">
+          <option value="unsafe" style="border-radius: 1rem">UnSafe</option>
+          <option value="safe" style="border-radius: 1rem">Safe</option>
+        </select>
+      </div>
+      <div class="form-group col-md-3">
+        <small>Number of Police Stations</small>
+            <input type="number" min="0" ngModel #policeStations="ngModel" name="policeStations" required placeholder="Number of police stations"
+              style="border-radius: 1rem" class="form-control form-field-small">
+      </div>
+       <div class="form-group col-md-3">
+        <small>Age</small>
+            <input type="number" min="0" ngModel #age="ngModel" name="age" required placeholder="Age of the house"
+              style="border-radius: 1rem" class="form-control form-field-small">
+      </div>
+        <div class="form-group col-md-3">
+        <label for="">Current Situation</label>
+        <select name="currentSituation" ngModel #currentSituation="ngModel" required
+          class="custom-select" style="border-radius: 1rem">
+          <option value="New" style="border-radius: 1rem">New</option>
+          <option value="Fair" style="border-radius: 1rem">Fair</option>
+          <option value="Need Maintenance" style="border-radius: 1rem">Need Maintenance</option>
+          <option value="Severe" style="border-radius: 1rem">Severe</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="">Property Title: <small class="text-info">(Auto-generated)</small></label>
+      <input type="text" #title="ngModel" name="title" (change)="log(title.value)"
+        [ngModel]="getDataTitleViaId(Proptype.value, 'houseTypeList', 'title') +  (city.value ? ' in ' + getDataTitleViaId(city.value, 'cityList', 'name') : '') + (state.value ? (city.value ? ', ': ' in ') + getDataTitleViaId(state.value, 'stateList', 'name') : '')"
+        style="border-radius: 1rem" placeholder="Enter property's title" required class="form-control">
+
+      <small class="text-danger" *ngIf="title.touched && title.invalid">
+        This field is required</small>
+    </div>
+    <div class="form-group">
+     <label for="">UserId:</label>
+     <input type="text" ngModel #user_id="ngModel" name="user_id" required placeholder="User Id" style="border-radius: 1rem" [value]="clienthouses.userId" class="form-control">
+   </div>
+    <button  class="btn btn-success btn-rounded btn-block"><i class="fa fa-paper-plane"></i>Post a New House</button>
+  </form>
+</div>

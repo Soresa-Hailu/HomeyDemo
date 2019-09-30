@@ -1,0 +1,80 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <div class="nav-link">
+        <div class="user-wrapper">
+          <div class="profile-image">
+            <img src="assets/images/user.jpg" alt="profile image">
+          </div>
+          <div class="text-wrapper">
+            <p class="profile-name">Homier</p>
+            <div>
+              <small class="designation text-muted">Homier</small>
+              <span class="status-indicator online"></span>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-success btn-block">Homey
+          <i class="mdi mdi-home"></i>
+        </button>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="#" routerLinkActive="active">
+        <i class="menu-icon fa fa-desktop" style="color: black"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+   <li class="nav-item">
+      <a class="nav-link" routerLink="/homier/postHouse" routerLinkActive="active">
+         <i class="menu-icon fa fa-paper-plane-o" style="color: black"></i>
+         <span class="menu-title">Post House</span>
+      </a>
+   </li>
+   <li class="nav-item">
+     <a class="nav-link" routerLink="/homier/posted-by-me" routerLinkActive="active">
+         <i class="menu-icon fa fa-leaf" style="color: black"></i>
+         <span class="menu-title">Posted By Me</span>
+     </a>
+   </li>
+   <li class="nav-item">
+     <a class="nav-link" routerLink="/homier/googleMap" routerLinkActive="active">
+         <i class="menu-icon fa fa-map" style="color: black"></i>
+         <span class="menu-title">Google Map</span>
+      </a>
+   </li>
+  <li class="nav-item">
+     <a class="nav-link" routerLink="/homier/resumed-house"
+routerLinkActive="active">
+      <i class="menu-icon fa fa-gears" style="color: black"></i>
+      <span class="menu-title">Resumed House <span class="badge badge-danger ml-1" *ngIf="houses.length>0"> {{houses.length}} </span></span>
+     </a>
+   </li>
+   <li class="nav-item">
+     <a class="nav-link" routerLink="/homier/posted-house"
+routerLinkActive="active">
+      <i class="menu-icon fa fa-bank" style="color: black"></i>
+      <span class="menu-title">Accepted House <span class="badge badge-success ml-1" *ngIf="accepts.length>0"> {{accepts.length}} </span></span>
+     </a>
+   </li>
+    <li class="nav-item">
+     <a class="nav-link" routerLink="/homier/breaked-deal"
+routerLinkActive="active">
+      <i class="menu-icon fa fa-chain-broken" style="color: black"></i>
+      <span class="menu-title">Breaked Deal Houses</span>
+     </a>
+   </li>
+   <li class="nav-item">
+      <a class="nav-link" routerLink="/homier/homier-password" routerLinkActive="active">
+        <i class="menu-icon fa fa-key" style="color: black"></i>
+        <span class="menu-title">Password Preferences</span>
+      </a>
+  </li>
+<li class="nav-item">
+<a class="btn nav-link" (click)="loginService.logOutAgentHomier()" routerLinkActive="active">
+    <i class="menu-icon fa fa-sign-out" style="color: black"></i>
+      <span class="menu-title">Sign Out</span>
+     </a>
+</li>
+  </ul>
+</nav>

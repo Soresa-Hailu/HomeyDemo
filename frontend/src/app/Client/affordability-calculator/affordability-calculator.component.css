@@ -1,0 +1,129 @@
+
+.display{text-align:center;}
+.display h5{
+  padding-top:40px;
+   font-size:18px;
+   font-weight:600;
+ }
+ .display .affordable-number{
+   font-size:36px;
+ }
+ .display .affordable-txt{
+   margin-left:auto;
+   margin-right:auto;
+   max-width:360px;
+   padding:15px
+ }
+ .display .payment{
+   padding: 10px;
+    font-size: 18px;
+    width: 180px;
+    margin-top: 8px;
+    position: absolute;
+    float: left;
+    left: 38%;
+ }
+.form-group{
+  margin-top:10px;
+}
+.input-group-addon{
+  background-color:transparent;
+  border:none;
+  border-bottom:1px solid #ccc;
+  color:#aaa;
+}
+input[type=checkbox].checkbox {
+  width:20px;
+  margin-right:5px;
+  }
+.form-control{
+  border:none;
+  border-bottom:1px solid #ccc;
+  box-shadow: rgba(0, 0, 0, 0.0745098) 0px 0px 0px inset;
+  font-size: 16px;
+    font-weight: 100;
+    color: #222;
+}
+.simple a {font-size:18px;color:#fe6a07;}
+.simple a:hover{ 
+   text-decoration:none;
+   color: rgba(254, 106, 7, 0.7);
+}
+.simple .glyphicon {padding-left:5px;}
+.image-wrapper{position:relative;min-height:60px;}
+.graphic-piggy{float:left;opacity:.2;position:absolute;bottom:0;left:15px;}
+.graphic-house{float:right;opacity:.2;position:absolute;bottom:0;right:15px;}
+
+
+/*Chrome Range slider stuff*/
+input[type=range]{
+    -webkit-appearance: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+   
+    height: 20px;
+    background: #ddd;
+    border: none;
+    border-radius: 6px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: #5cb85c;
+    margin-top: -8px;
+}
+input[type=range].warning::-webkit-slider-thumb {
+  background: #f0ad4e;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+/*IE Range slider stuff*/
+input[type=range]::-ms-track {
+    
+    height: 20px;
+    
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    background: transparent;
+    
+    /*leave room for the larger thumb to overflow with a transparent border */
+    border-color: transparent;
+    border-width: 6px 0;
+
+    /*remove default tick marks*/
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+}
+input[type=range]::-ms-thumb {
+    border: none;
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    background: #5cb85c;
+}
+input[type=range].warning::-ms-thumb {
+    background: #f0ad4eY;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #888;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #ccc;
+}
+/*End IE Range slider stuff*/

@@ -1,0 +1,17 @@
+<agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="onChoseLocation($event)">
+
+<agm-marker
+ [latitude]="latitude"
+ [longitude]="longitude"
+ [markerDraggable]="true"
+ *ngIf="locationChosen">
+ <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
+      <ng-template>
+        <i class="fa fa-hand-o-right" style="color: green"></i>Latitude: {{latitude}}
+        <i class="fa fa-hand-o-right" style="color: green"></i>Longitude: {{longitude}}
+      </ng-template>
+    </agm-snazzy-info-window>
+ 
+ </agm-marker>
+</agm-map>
+

@@ -1,0 +1,73 @@
+ <label>Search</label>
+<input type="text" [(ngModel)]="searchTxt" class="form-control" name="searchTxt" placeholder="search name">
+
+<table id="dtBasicExample" class="table table-responsive table-striped table-bordered table-sm" [mfData]="agents | searchAgent:searchTxt" #mf="mfDataTable" [mfRowsOnPage]="5" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      
+      <th class="th-sm text-center">
+             <mfDefaultSorter by="fname">First Name</mfDefaultSorter>
+      </th>
+      <th class="th-sm text-center">
+              <mfDefaultSorter by="lname">Last Name</mfDefaultSorter>
+      </th>
+      <th class="th-sm text-center">
+                 <mfDefaultSorter by="email">Email</mfDefaultSorter>
+      </th>
+      <th class="th-sm text-center">
+          <mfDefaultSorter by="phoneNo">Phone Number</mfDefaultSorter>
+      </th>
+      <th class="th-sm text-center">
+             <mfDefaultSorter by="password">Password</mfDefaultSorter>
+      </th>
+      <th class="th-sm text-center">
+          <mfDefaultSorter by="state">State</mfDefaultSorter>
+      </th>
+      <th class="th-sm text-center">
+        <mfDefaultSorter by="city">City</mfDefaultSorter>
+      </th>
+      <th class="th-sm text-center">
+ <mfDefaultSorter by="agentType">Agent Type</mfDefaultSorter>
+      </th>
+      <th class="th-sm text-center">
+ <mfDefaultSorter by="rating">Rating</mfDefaultSorter>
+      </th>
+      <th class="th-sm text-center">
+ <mfDefaultSorter by="numberOfSell">Number Of Sell</mfDefaultSorter>
+      </th>
+      <th class="th-sm text-center" colspan="3">Actions
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let agent of mf.data">
+     <ng-container *ngIf="agent == -1">
+          <td colspan="4" align="center">No Data Found</td>
+        </ng-container>
+        <ng-container *ngIf="agent!=-1">
+      <td>{{ agent.fname }}</td>
+          <td>{{ agent.lname }}</td>
+          <td>{{ agent.email }}</td>
+          <td>{{ agent.phoneNo }}</td>
+          <td>{{ agent.password }}</td>
+          <td>{{ agent.state.name }}</td>
+          <td>{{ agent.city.name  }}</td>
+          <td>{{ agent.agentType }}</td>
+          <td>{{ agent.rating }}</td>
+          <td>{{ agent.numberOfSell }}</td>
+          <td><a [routerLink]="['/admin/editAgent', agent._id]" class="btn btn-primary"><i class="fa fa-eye"></i>View</a></td>
+          <td><a *ngIf="agent.agentType==='realtor'" [routerLink]="['/admin/rate-the-agent', agent._id, agent.rating]" class="btn btn-success"><i class="fa fa-star"></i>Rate</a></td>
+          <td><a (click) = "deleteAgent(agent._id)" class="btn btn-danger"><i class="mdi mdi-delete"></i>Delete</a></td>
+          </ng-container>
+    </tr>
+   
+  </tbody>
+<tfoot>
+  <tr>
+      <td colspan="4">
+          <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+      </td>
+  </tr>
+  </tfoot>
+</table>

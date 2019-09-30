@@ -1,0 +1,45 @@
+<label>Search</label>
+<input type="text" [(ngModel)]="searchTxt" class="form-control" name="searchTxt" placeholder="search name">
+ 
+<table class="table table-hover table-bordered" [mfData]="cities | search:searchTxt" #mf="mfDataTable" [mfRowsOnPage]="5">
+<thead>
+<tr>
+ <th >
+          <mfDefaultSorter by="name">Name</mfDefaultSorter>
+      </th>
+       <th >
+          <mfDefaultSorter by="state">state</mfDefaultSorter>
+      </th>
+      <th >
+          <mfDefaultSorter by="is_active">Is Active</mfDefaultSorter>
+      </th>
+      <th >
+          <mfDefaultSorter by="created_on">Created On</mfDefaultSorter>
+      </th>
+      <th>
+          <mfDefaultSorter by="action">Action</mfDefaultSorter>
+      </th>
+</tr>
+</thead>
+<tbody>
+    <tr *ngFor="let city of mf.data">
+    <ng-container *ngIf="city == -1">
+          <td colspan="4" align="center">No Data Found</td>
+        </ng-container>
+        <ng-container *ngIf="city!=-1">
+     <td>{{ city.name }}</td>
+     <td>{{ city.state_id.name }}
+     <td>{{ city.is_active }}</td>
+     <td>{{ getFormattedDate(city.created_on) }}</td>
+     <td><a (click) = "deleteCity(city._id)" class="btn btn-danger btn-rounded"><i class="mdi mdi-delete" style="color: #800000"></i>Delete</a></td> 
+       </ng-container>
+   </tr>
+ </tbody>
+ <tfoot>
+  <tr>
+      <td colspan="4">
+          <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+      </td>
+  </tr>
+  </tfoot>
+</table>

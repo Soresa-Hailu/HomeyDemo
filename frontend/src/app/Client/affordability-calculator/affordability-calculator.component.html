@@ -1,0 +1,164 @@
+<div class="pb-5">
+<app-client-menu></app-client-menu>
+</div>
+<main>
+<div class="container pt-5 pb-5">
+            <div class="row">
+                <div class="col-sm-9">
+                    <h1 class="text-center">
+                    Affordability Calculator
+                    </h1>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <p>
+                        Use this calculator to determine how much house you can afford. By entering details about your income, down payment, and monthly debts, you can estimate the mortgage amount that works with your budget.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-7  col-md-8 col-md-push-4 display">
+                    <h5>You can afford a house up to</h5>
+                    <div class="affordable-number">
+                  {{ affordabilityData.affordableValue}} Birr
+                    </div>
+                  <span [hidden]="affordabilityData.debtToIncome <= 36">Based on your income, a house at this price should fit comfortably within your budget.</span>
+                        <span [hidden]="affordabilityData.debtToIncome > 36">Based on your income, a house at this price may stretch your budget too thin.</span>
+                    </div>
+                    
+                    <div class="image-wrapper">
+  <img class="graphic-piggy" src="../../../assets/images/piggy.svg" [ngStyle]="{'width' : imgSize('pig'), 'height' : imgSize('pig')}">
+                                     <div class="payment btn " [ngClass]="affordabilityData.debtToIncome <= 36 ? 'btn-success':'btn-danger'">{{affordabilityData.payment}}/month</div>
+ <img class="graphic-house" src="../../../assets/images/house.svg" [ngStyle]="{'width' : imgSize('house'), 'height' : imgSize('house')}">
+                          </div>
+                    <div>
+                        <input type="range" [ngClass]="affordabilityData.debtToIncome > 36 ? 'warning':''"  (change)="getAffordability('slider')" [(ngModel)]="affordabilityData.debtToIncome" class="range" min="0" step="1" max="43" />
+                    </div>
+                <div class="col-sm-5 col-md-4 col-md-pull-8">
+
+                    <div class="form-group">
+                        <label for="annualIncome">Annual income</label>
+                        <div class="input-group">
+
+                            <span class="input-group-addon">
+                                B
+                            </span>
+
+                            <input type="number" min="0" class="form-control" (keyup)="getAffordability()" [(ngModel)]="affordabilityData.annualIncome"  class="form-control" name="annualIncome" id="annualIncome" maxlength="30" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="monthlyDebts">Monthly debts</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                B
+                            </span>
+                            <input type="number" min="0" (keyup)="getAffordability()" [(ngModel)]="affordabilityData.monthlyDebts"  class="form-control"  name="monthlyDebts" id="monthlyDebts" />
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="downPayment">Down payment</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                B
+                            </span>
+                            <input type="number" min="0" class="form-control" (keyup)="getAffordability()" [(ngModel)]="affordabilityData.downPayment" name="downPayment" id="downPayment" />
+
+                        </div>
+                    </div>
+                        <div class="form-group">
+                            <label for="debtToIncome">Debt-to-income</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                 B
+                                </span>
+                                <input [ngClass]="affordabilityData.debtToIncome > 36 ? 'label-warning':''" type="number" min="0" (keyup)="getAffordability()" [(ngModel)]="affordabilityData.debtToIncome"  class="form-control" name="debtToIncome" id="debtToIncome" />
+                                <span class="input-group-addon">
+                                    %
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="interestRate">Interest rate</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    B
+                                </span>
+                                <input type="number" min="0" (keyup)="getAffordability()" [(ngModel)]="affordabilityData.interestRate"  class="form-control" name="interestRate" id="interestRate" />
+                                <span class="input-group-addon">
+                                    %
+                                </span>
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="loanTerm">Loan term</label>
+                             <select type="text" (keyup)="getAffordability()" [(ngModel)]="affordabilityData.loanTerm"  class="form-control" name="loanTerm" id="loanTerm" ng-pattern="" required>
+                                    <option value="30">30-year fixed</option>
+                                    <option value="15">15-year fixed</option>
+                                    <option value="5">5/1 ARM</option>
+                             </select>
+                           
+                        </div>
+                            <div class="form-group">
+                                <label for="taxes">Property tax</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        B
+                                    </span>
+                                    <input type="text" style="" (keyup)="getAffordability('ptax')" class="form-control" [(ngModel)]="affordabilityData.taxes" class="form-control" name="taxes" id="taxes" maxlength="10" /><span class="input-group-addon">/year</span>
+                            </div>
+                        </div>
+                      <div class="form-group">
+                            <label for="textPercent">Tax Percent</label>
+                            <div class="input-group">
+                                <input type="text" style="" (keyup)="getAffordability('ptaxPercent')" class="form-control" [(ngModel)]="affordabilityData.taxPercent" name="taxPercent" id="taxPercent" maxlength="5" />
+                                    <span class="input-group-addon">
+                                        %
+                                    </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="homeInsurance">Home insurance</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    B
+                                </span>
+                                <input type="text" (keyup)="getAffordability()" class="form-control" [(ngModel)]="affordabilityData.homeInsurance" name="homeInsurance" id="homeInsurance" />
+                                <span class="input-group-addon">
+                                    /year
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-inline">
+                     
+                        </div>
+                        <div class="form-group">
+                            <label for="hoaDues">HOA dues</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    B
+                                </span>
+                                <input type="text" (keyup)="getAffordability()" class="form-control" [(ngModel)]="affordabilityData.hoaDues" name="hoaDues" id="hoaDues" />
+                                <span class="input-group-addon">
+                                    /month
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+<div style="display: block">
+  <canvas baseChart
+              [data]="[130,450,345]"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"></canvas>
+</div>
+</main>
+<app-footer-main></app-footer-main>
+

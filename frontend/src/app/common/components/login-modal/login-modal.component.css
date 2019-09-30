@@ -1,0 +1,54 @@
+	.modal-login {
+		width: 350px;
+                border-radius: 100px;
+	}
+	.homey-modal {
+	
+		border-radius: 100px;
+		
+	}
+	 .modal-header {
+		border-bottom: none;
+                position: relative;
+		justify-content: center;
+	}
+     h4 {
+		text-align: center;
+		font-size: 26px;
+	}
+   .form-group {
+        margin-bottom: 20px;
+    }
+	 .btn {
+		min-height: 40px;
+		border-radius: 30px; 
+        font-size: 15px;
+        transition: all 0.5s;
+	}
+  .form-control {
+        font-size: 13px;
+    }
+  .form-control:focus {
+        border-color: #a177ff;
+    }
+	.modal-login .hint-text {
+		text-align: center;
+		padding-top: 10px;
+	}
+	.close {
+        position: absolute;
+		top: 0px;
+		right: 8px;
+                border: none;
+                outline: none;
+                color: red;
+	}
+	.btn {
+		background: #8753ff;
+		border: none;
+		line-height: normal;
+	}
+        .btn:hover, .btn:focus {
+		background: green;
+	}
+	

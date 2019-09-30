@@ -1,0 +1,32 @@
+<div class="pb-5">
+<app-client-menu></app-client-menu>
+</div>
+<main>
+<div class="container pt-5 pb-5">
+<div class="row">
+  <div class="col-md-6 grid-margin stretch-card" *ngFor="let scoop of scoops">
+    <div class="card" >
+      <div class="card-body">
+        <ngb-tabset class="tab-basic">
+          <ngb-tab title="Trending">
+            <ng-template ngbTabContent>
+              <div class="row">
+                <div class="col-md-4"><img class="img-fluid w-100 " src="{{commonService.base_url}}/house/showGFSImage/{{ scoop.images[0] }}" alt=""></div>
+                <div class="col-md-8">
+                  <h5 class="mb-3">{{scoop.title}}</h5>
+                  <p>{{scoop.description}}</p>
+                  <p>Source: <a href="{{scoop.sourceUrl}}"><strong>{{scoop.sourceUrl}}</strong></a></p>
+                </div>
+              </div>
+<small class="text-muted">{{getFormattedDate(scoop.createdOn)}}</small>
+            </ng-template>
+          </ngb-tab>
+         
+        </ngb-tabset>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</main>
+<app-footer-main></app-footer-main>

@@ -1,0 +1,115 @@
+<div class="pb-5">
+<app-client-menu></app-client-menu>
+</div>
+<main>
+<div class="pb-5">
+<div class="searchHou-cont">
+  <ngb-carousel>
+        <ng-template ngbSlide>
+          <img src="../../../../../assets/images/1.jpg" alt="Random first slide" class="carousal-img" width="100%">
+        </ng-template>
+        <ng-template ngbSlide>
+          <img src="../../../../../assets/images/Login_bg.jpg" alt="Random second slide" class="carousal-img" width="100%">
+        </ng-template>
+        <ng-template ngbSlide>
+          <img src="../../../../../assets/images/lockscreen-bg.jpg" alt="Random third slide" class="carousal-img" width="100%">
+      </ng-template>
+  </ngb-carousel>
+<div class="container searchHou">
+    <!-- <h4 class="text-danger">Search Property:</h4>
+    <hr class="hr"> -->
+
+    <form #searchData="ngForm" (ngSubmit)="searchHou(searchData.value)" >
+      <ngb-tabset type="pills">
+        <ngb-tab>
+          <ng-template ngbTabTitle>
+            <label (click)="searchHouData.houseFor = 'sell'" >BUY</label>
+          </ng-template>
+          <ng-template ngbTabContent>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle>
+            <label (click)="searchHouData.houseFor = 'rent'" >RENT</label>
+          </ng-template>
+          
+          <ng-template ngbTabContent>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle><label><b routerLink="/client/house-resume">POST A HOUSE</b></label></ng-template>
+          <ng-template ngbTabContent>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+      <div class="text-center searchFields" style="margin-top:0px">
+        <div class="form-group">
+            <input id="typeahead-basic" placeholder="Enter a location" type="text" class="rounded-left" ngModel #location="ngModel" name="city" [value]="searchHouData.location" [ngbTypeahead]="search" />
+
+          <select ngModel #city="ngModel" style="width: auto;" name="type" class="custom-select searchType rounded-0 p-cursor">
+            <option value="">House Type</option>
+            <option *ngFor="let type of houseTypeList" [value]="type._id">{{ type.title }}</option>
+          </select>
+
+          <button class="btn btn-success searchButton rounded-0 rounded-right"><i class="fa fa-search" style="font-size:15px"></i></button>
+        </div>
+      </div>   
+    </form>
+  </div>
+</div>
+<div class="pt-5">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-6 mt-3">
+            <div class="card">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <img class="" src="../../../assets/images/map-ethiopia.jpg" style="width: 150px; height:155px" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Houses In Homey</h4>
+                        <p class="card-text">{{houses.length}} houses, {{houseTypeList.length}} house types <a class="btn btn-rounded" style="color: #0077B5" routerLink="/map-ethiopia">Go</a></p>
+                        
+                    </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-6 mt-3">
+            <div class="card">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <img class="" src="../../../assets/images/Google-Map-of-Addis-Ababa.png" style="width: 150px; height:155px" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Homey In Ethiopia</h4>
+                        <p class="card-text">{{stateList.length}} cities, {{cityList.length}} sub cities <a class="btn btn-rounded" style="color: #0077B5" routerLink="/satellite-ethiopia">Go</a></p>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+<h3>Recent Postings</h3>
+<div class="row">
+<div class="col-md-2 grid-margin stretch-card" *ngFor="let house of houses">
+  <div class="card">
+    <img class="card-img-top" src="{{commonService.base_url}}/house/showGFSImage/{{ house.images[0] }}" alt="Card image cap">
+     <div class="card-body">
+      <h4 class="card-title mb-3">Birr {{house.price}}</h4>
+      <p class="card-text">{{house.title}}, <i class="fa fa-bath"></i>{{house.bathRooms}},<i class="fa fa-bed"></i>{{house.bedRooms}}, <i class="fa fa-building"></i>{{(house.length)*(house.breadth)}}sqft</p>
+      <a [routerLink]="['/view-house', house._id, house.city]" class="btn btn-rounded btn-success"><i class="fa fa-eye"></i></a>
+               <a *ngIf="loginService.isLoggedIn()" (click)="likedByUsers(house._id, userService.currentUser.user._id)" href="javascript:void(0)" class=""><i class="fa fa-heart" style="color: green"></i></a>
+      <p class="card-text text-muted">{{house.likesByUsers.length}} Likes</p>
+      <p class="card-text text-muted">{{getFormattedDate(house.createdOn)}}</p>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+</main>
+
+<app-footer-main></app-footer-main>
+

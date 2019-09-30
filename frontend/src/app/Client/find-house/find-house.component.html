@@ -1,0 +1,91 @@
+<div class="pb-5">
+<app-client-menu></app-client-menu>
+</div>
+<main>
+<div class="container pt-5 pb-5">
+
+<div class="container find-houses">
+  <div class="row">
+    <div class="col-md-3">
+      <form #filter="ngForm" class="positn-sticky" (ngSubmit)="filterHouses()">
+        <h4 class="pad-btm-15">
+          <i class="fa fa-filter" style="font-size: 10px" aria-hidden="true"></i> Filters
+          <a href="javascript:void(0);" (click)="clearFilters()">
+            <small>clear</small>
+          </a>
+          <button class="btn btn-success btn-sm float-right btn-rounded"><i class="fa fa-search"></i>Search</button>
+        </h4>
+        <div class="border-main border-box-manage side-bar-filter card">
+          <div class="form-group">
+            <h5>House For
+              <i (click)="hideSidebarItem(1);" [ngClass]="{ 
+              'fa-plus-square-o': SidebarHiddenItem == 1,
+              'fa-minus-square-o': SidebarHiddenItem != 1
+             }" class="fa  p-cursor float-right" aria-hidden="true"></i>
+            </h5>
+            <hr class="hr">
+            <div class="custom-control custom-checkbox" [hidden]="SidebarHiddenItem == 1">
+              <div class="row">
+                <div *ngFor="let houseFor of [{ key: 'sell', val: 'buy'}, { key: 'rent', val: 'rent'}];let loop = index" class="col">
+                  <input name="houseFor" type="checkbox" class="custom-control-input" id="forCheck{{loop}}" value="{{houseFor.key}}" [checked]="checkCheckedValue(houseFor.key, 'houseFor')" (change)="$event.target.checked? manageCheckedValue(houseFor.key, 'houseFor', true) : manageCheckedValue(houseFor.key, 'houseFor', false)">
+                  <label class="custom-control-label" style="padding-left: 5px;" for="forCheck{{loop}}">{{houseFor.val | titlecase }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <h5>House Type
+              <i (click)="hideSidebarItem(2);" [ngClass]="{ 
+              'fa-plus-square-o': SidebarHiddenItem == 2,
+              'fa-minus-square-o': SidebarHiddenItem != 2
+             }" class="fa  p-cursor float-right" aria-hidden="true"></i>
+            </h5>
+            <hr class="hr">
+            <div [hidden]="SidebarHiddenItem == 2" class="options-block">
+              <div *ngFor="let type of houseTypeList; let loop = index" class="custom-control custom-checkbox d-block">
+                <input name="type" type="checkbox" class="custom-control-input" id="customCheck{{loop}}" value="{{type._id}}" [checked]="checkCheckedValue(type._id, 'type')" (change)="$event.target.checked? manageCheckedValue(type._id, 'type', true) : manageCheckedValue(type._id, 'type', false)">
+                <label class="custom-control-label" for="customCheck{{loop}}">{{type.title}}</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <h5>City
+              <i (click)="hideSidebarItem(3);" [ngClass]="{ 
+              'fa-plus-square-o': SidebarHiddenItem == 3,
+              'fa-minus-square-o': SidebarHiddenItem != 3
+             }" class="fa p-cursor float-right" aria-hidden="true"></i>
+            </h5>
+            <hr class="hr">
+            <div [hidden]="SidebarHiddenItem == 3" class="options-block">
+              <div *ngFor="let city of cityList; let loop = index" class="custom-control custom-checkbox d-block">
+                <input name="city" type="checkbox" class="custom-control-input" id="cityCheck{{loop}}" value="{{city._id}}" [checked]="checkCheckedValue(city._id, 'city')" (change)="$event.target.checked? manageCheckedValue(city._id, 'city', true) : manageCheckedValue(city._id, 'city', false)">
+                <label class="custom-control-label" for="cityCheck{{loop}}">{{city.name}}</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <h5>RealEstate Vendors
+              <i (click)="hideSidebarItem(4);" [ngClass]="{ 
+              'fa-plus-square-o': SidebarHiddenItem == 4,
+              'fa-minus-square-o': SidebarHiddenItem != 4
+             }" class="fa p-cursor float-right" aria-hidden="true"></i>
+            </h5>
+            <hr class="hr">
+            <div [hidden]="SidebarHiddenItem == 4" class="options-block">
+              <div *ngFor="let house of houses; let loop = index" class="custom-control custom-checkbox d-block">
+                <input name="owner" type="checkbox" class="custom-control-input" id="ownerCheck{{loop}}" value="{{house.owner}}" [checked]="checkCheckedValue(house.owner, 'owner')" (change)="$event.target.checked? manageCheckedValue(house.owner, 'owner', true) : manageCheckedValue(house.owner, 'owner', false)">
+                <label class="custom-control-label" for="ownerCheck{{loop}}">{{house.owner}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-9">
+     <app-house-list [queryParams]="queryParams"></app-house-list>
+    </div>
+  </div>
+</div>
+</div>
+</main>
+<app-footer-main></app-footer-main>

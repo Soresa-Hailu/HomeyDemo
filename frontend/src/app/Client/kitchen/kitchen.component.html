@@ -1,0 +1,17 @@
+<div class="pb-5">
+<app-client-menu></app-client-menu>
+<p> <a [routerLink]="['/']" class="btn btn-success btn-rounded"><i class="fa fa-angle-double-left custom" style="color: #800000;"></i>Back to home</a>
+ <a [routerLink]="['/melemameja']" class="btn btn-success btn-rounded"><i class="fa fa-eye" style="color: #800000;"></i>See the Kushina</a></p>
+</div>
+<main>
+<div class=" pt-5 pb-5">
+
+<a-scene>
+      <a-sky src="../../assets/images/kushina.jpg" rotation="0 -130 0"></a-sky>
+
+      <a-text font="kelsonsans" value="Kushina" width="6" position="-2.5 0.25 -1.5"
+              rotation="0 15 0"></a-text>
+</a-scene>
+</div>
+</main>
+<app-threehunderd></app-threehunderd>

@@ -1,0 +1,62 @@
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+agm-map {
+   height: 320px;
+}
+.carousal-img{
+    height: 350px;
+}
+:host /deep/ .nav.nav-pills{
+    text-align: center;
+    display: block;
+    margin-bottom: 0px;
+}
+:host /deep/ .nav.nav-pills .nav-item{
+    display: inline-block;
+}
+:host /deep/ .nav.nav-pills .nav-item a {
+    border-radius: 0px;
+    background-color: #eee;
+    border: 0px solid #fff;
+    color: black;
+    padding: 0px;
+}
+:host /deep/ .nav.nav-pills .nav-item a.active {
+    background-color: #20c063;
+    color: white;
+}
+:host /deep/ .nav.nav-pills .nav-item a label{
+    padding: 15px 80px;
+    cursor: pointer;
+    margin-bottom: 0px;
+}
+.searchHou-cont {
+    position: relative;
+}
+
+.searchHou {
+    position: absolute;
+    bottom: 80px;
+    left: 6%;
+}
+
+.searchFields input, .searchFields select, .searchFields button {
+    padding: 10px 110px 10px 10px;
+    margin-right: 0px;
+    height: auto;
+    border: none;
+}
+.searchFields input{
+    padding: 8px 110px 12px 10px;
+    
+}
+
+.searchFields button{
+     margin-right: 0px;
+    margin-left: 0px;
+    padding: 15px 35px;
+    background-color: #20c063;
+}

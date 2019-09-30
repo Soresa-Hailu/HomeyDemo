@@ -1,0 +1,53 @@
+<div class="container border-main border-box-manage card">
+  <form #f="ngForm" (ngSubmit)="submitForm(f)" enctype="multipart/form-data">
+    <h4 class="text-center text-success">Post a scoop in real estate business</h4>
+    <hr class="hr">
+    <div class="form-group">
+      <label for=""> Upload images: <small class="text-info">(Auto-generated)</small> <small *ngIf="imgUrls.length;"
+          (click)="imgUrls.length = 0;" class="p-cursor text-primary">(remove all)</small></label> <br>
+      <div *ngIf="!imgUrls.length; else imgBOx" class="dropbox">
+        <input type="file" name="uploadFieldName"
+          (change)="filesChange($event.target.name, $event.target.files)" accept="image/*" #photos>
+        <p *ngIf="currentStatus === STATUS_INITIAL">
+          <i class="fa fa-download" style="font-size: 48px; color: gold"></i>
+        </p>
+        <!-- <p *ngIf="currentStatus === STATUS_SAVING">
+          Uploading {{ photos.files.length }} files...
+        </p> -->
+      </div>
+      <ng-template #imgBOx>
+        <span class="singlImg" *ngFor="let img of imgUrls">
+          <img src="{{img.path}}" style="max-width: 150px; margin-right: 10px;" alt="img">
+          <i (click)="removeSinglePic(img);" class="fa fa-times p-cursor" aria-hidden="true"></i>
+        </span>
+      </ng-template>
+    </div>
+ <div class="form-group col-md-12">
+        <label for="">Title</label>
+        <input type="text" required [appInputFormat]="'capitalize'" name="title" ngModel #title="ngModel"
+          style="border-radius: 1rem" placeholder="Enter the title of the scoop" class="form-control">
+
+        <small class="text-danger" *ngIf="title.touched && title.invalid">
+         Title Is Required</small>
+      </div>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="">Description</label>
+        <textarea name="description" required [appInputFormat]="'capitalize'" ngModel #description="ngModel" class="form-control" resize="none"
+          cols="30" maxlength="700" style="border-radius: 1rem" rows="5" placeholder="Write something here..."></textarea>
+
+        <small class="text-danger" *ngIf="description.touched && description.invalid">
+          This field is required</small>
+      </div>
+</div>
+ <div class="form-group col-md-12">
+        <label for="">Source</label>
+        <input type="text" required name="sourceUrl" ngModel #sourceUrl="ngModel"
+          style="border-radius: 1rem" placeholder="Enter the source of the scoop" class="form-control">
+
+        <small class="text-danger" *ngIf="sourceUrl.touched && sourceUrl.invalid">
+         Title Is Required</small>
+      </div>
+    <button [disabled]="f.invalid" class="btn btn-success btn-rounded btn-block"><i class="fa fa-paper-plane"></i>Post</button>
+  </form>
+</div>

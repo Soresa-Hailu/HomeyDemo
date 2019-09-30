@@ -1,0 +1,30 @@
+<h3 class="text-center text-success">Add a New City</h3>
+<div class="container border-main border-box-manage card">
+  <form class="" [formGroup]="createForm"  (ngSubmit)="registration(createForm)" (change)="log(createForm)">
+    <h4 class="text-center text-success">City Information </h4>
+<div *ngIf="mainErrorMessage">
+            <p class="alert alert-{{ mainErrorMessage.type }}">{{ mainErrorMessage.message }}</p>
+        </div>
+    <div class="form-group">
+      <label for="" class="col-md-4">name</label>
+      <input type="text" [appInputFormat]="'singleWordFiltercapitalize'" formControlName="name"
+        placeholder="Enter The Name of The City" class="form-control" style="border-radius: 1rem" required >
+
+      <small class="text-danger" *ngIf="name.touched && name.invalid">
+        City Name is required</small>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="">State</label>
+        <select name="state" formControlName="state" (change)="getCityList(state.value)"
+          class="custom-select border-success" style="border-radius: 1rem">
+          <option value="">Select State</option>
+          <option *ngFor="let state of stateList" value="{{state._id}}">{{state.name}}</option>
+        </select>
+        <small class="text-danger" *ngIf="state.touched && state.invalid">
+          State is required</small>
+      </div>
+</div>
+    <button [disabled]="!createForm.valid" class="btn btn-success btn-block btn-rounded"><i class="fa fa-plus-circle" style="color: #800000"></i>Add A New City</button>
+  </form>
+</div>

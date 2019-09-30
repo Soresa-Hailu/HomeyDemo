@@ -1,0 +1,48 @@
+ <label>Search</label>
+<input type="text" [(ngModel)]="searchTxt" class="form-control" name="searchTxt" placeholder="search name">
+
+<table class="table table-hover table-bordered" [mfData]="houseTypes | searchType:searchTxt" #mf="mfDataTable" [mfRowsOnPage]="5">
+<thead>
+<tr> 
+      
+      
+       <th >
+          <mfDefaultSorter by="title">Title</mfDefaultSorter>
+      </th>
+       <th >
+          <mfDefaultSorter by="type">Type</mfDefaultSorter>
+      </th>
+      <th >
+          <mfDefaultSorter by="is_active">Is Active</mfDefaultSorter>
+      </th>
+      <th >
+          <mfDefaultSorter by="created_on">created_on</mfDefaultSorter>
+      </th>
+      <th>
+          <mfDefaultSorter by="action">Action</mfDefaultSorter>
+      </th>
+</tr>
+</thead>
+
+<tbody>
+     <tr *ngFor="let houseType of mf.data">
+         <ng-container *ngIf="houseType == -1">
+          <td colspan="4" align="center">No Data Found</td>
+        </ng-container>
+        <ng-container *ngIf="houseType!=-1">
+      <td>{{ houseType.title }}</td>
+      <td>{{ houseType.type }}</td>
+      <td>{{ houseType.is_active }}</td>
+      <td>{{ getFormattedDate(houseType.createdOn) }}</td>
+      <td><a (click) = "deleteHouseType(houseType._id)" class="btn btn-danger btn-rounded"><i class="mdi mdi-delete" style="color: #800000"></i>Delete</a></td>
+      </ng-container>
+     </tr>
+ </tbody>
+  <tfoot>
+  <tr>
+      <td colspan="4">
+          <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+      </td>
+  </tr>
+  </tfoot>
+</table>  

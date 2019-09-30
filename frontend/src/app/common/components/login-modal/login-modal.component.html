@@ -1,0 +1,34 @@
+<div class="homey-modal" style="border-radius:5000px">
+<div class="modal-header">
+ <h4 class="modal-title"><i class="fa fa-sign-in" style="color: gold"></i></h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <div *ngIf="alertMessage.message" class="alert alert-{{ alertMessage.type }}">
+    {{ alertMessage.message }}
+  </div>
+
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    <div class="form-group">
+      <input ngModel name="emailPhno" type="text" #emailPhno="ngModel" class="form-control" placeholder="Email" style="border-radius: 1rem" required>
+      <small class="text-danger" *ngIf="emailPhno.touched && emailPhno.invalid">
+        This field is required</small>
+    </div>
+    <div class="form-group">
+      <input ngModel type="password" name="loginPassword" #loginPassword="ngModel" class="form-control" placeholder="Password"
+       style="border-radius: 1rem" required>
+      <small class="text-danger" *ngIf="loginPassword.touched && loginPassword.invalid">
+        This field is required</small>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-xs btn-success form-control" [disabled]="!loginForm.valid || loginCheck">Login
+        <i *ngIf="loginCheck" class="fa fa-spinner fa-pulse fa-fw"></i>
+      </button>
+    </div>
+  </form>
+</div>
+</div>
+

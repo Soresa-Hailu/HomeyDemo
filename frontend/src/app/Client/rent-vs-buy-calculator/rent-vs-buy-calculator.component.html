@@ -1,0 +1,54 @@
+<div class="pb-5">
+<app-client-menu></app-client-menu>
+</div>
+<main>
+<div class="container pt-5 pb-5">
+<h3 class="text-center text-danger">Rent Vs Buy Calculator</h3>
+<p>Debating on whether to rent or buy your next home? Use this calculator to compare the net costs of renting vs. buying (including opportunity cost, tax breaks, and</p>
+<p> more) to help decide what’s the right move for you.</p>
+<div class="container border-main border-box-manage card">
+
+<button type="button" class="btn btn-success btn-sm btn-rounded" disabled="disabled"><i class="fa fa-calculator">Rent/Cost Ratio</i></button>
+  <form>
+ <div class="form-group">
+
+  <label for="">Monthly Rent (Birr)</label>
+   <input type="number" min="0" (keyup)="mortgage()" [(ngModel)]="mortgageData.apr"  name="apr" required placeholder="Enter the monthly rent" class="form-control form-field-small">
+</div>
+ <div class="form-group">
+  <label for="">Home Cost (Birr)</label>
+   <input type="number" min="0" (keyup)="mortgage()" [(ngModel)]="mortgageData.term" name="term" required placeholder="Enter the home cost" class="form-control form-field-small">
+</div>
+
+<div class="col-md-6">
+  <h3 *ngIf="mortgageData.apr && mortgageData.term"> {{ mortgage }} rent/cost ratio </h3>
+</div>
+<div class="col-md-6">
+  <h3 *ngIf="mortgageData.apr && mortgageData.term"> {{ mortgagePercent }} % rent/cost ratio</h3>
+</div>
+</form>
+<button type="button" class="btn btn-success btn-sm btn-rounded" disabled="disabled"><i class="fa fa-cog">Break-Even Ratio</i></button>
+  <form>
+ <div class="form-group">
+  <label for="">Annual Debt Service (Birr)</label>
+   <input type="number" min="0" (keyup)="breakEven()" [(ngModel)]="breakEvenData.debt"  name="debt" required placeholder="Enter annual debt service" class="form-control form-field-small">
+</div>
+ <div class="form-group">
+  <label for="">Annual Expense (Birr)</label>
+   <input type="number" min="0" (keyup)="breakEven()" [(ngModel)]="breakEvenData.expense" name="expense" required placeholder="Enter annual expense" class="form-control form-field-small">
+</div>
+ <div class="form-group">
+  <label for="">Gross Operating Income (Birr)</label>
+   <input type="number" min="0" (keyup)="breakEven()" [(ngModel)]="breakEvenData.income" name="income" required placeholder="Enter gross operating income" class="form-control form-field-small">
+</div>
+<div class="col-md-6">
+  <h3 *ngIf="breakEvenData.debt && breakEvenData.expense && breakEvenData.income"> {{ breakEven }} break-even ratio</h3>
+</div>
+<div class="col-md-6">
+  <h3 *ngIf="breakEvenData.debt && breakEvenData.expense && breakEvenData.income"> {{ breakEvenPercent }} % break-even-ratio</h3>
+</div>
+</form>
+</div>
+</div>
+</main>
+<app-footer-main></app-footer-main>

@@ -1,0 +1,71 @@
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <a [routerLink]="['/homier/resumed-house']" class="btn btn-success btn-rounded"><i class="fa fa-angle-double-left custom" style="color: #800000;"></i>Back</a>
+        <ngb-tabset class="tab-solid tab-solid-primary" type="pills">
+          <ngb-tab>
+            <ng-template ngbTabTitle>
+              <i class="mdi mdi-image-filter"></i> House Photos
+            </ng-template>
+            <ng-template ngbTabContent>
+              <mdb-carousel [animation]="'slide'" >
+ <mdb-carousel-item *ngFor="let h of houses.images">
+    <img class="d-block w-100" src="{{commonService.base_url}}/house/showGFSImage/{{h}}"  style="height: 350px" alt="First slide">
+  </mdb-carousel-item>
+</mdb-carousel>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab>
+            <ng-template ngbTabTitle>
+              <i class="mdi mdi-movie"></i> House Description
+            </ng-template>
+            <ng-template ngbTabContent>
+             <table class="table">
+  <tbody>
+    <tr>
+      <td>{{houses.title}}</td>
+      <td>{{houses.state.name}}</td>
+      <td><i class="fa fa-bed"></i>{{houses.bedRooms}}</td>
+    </tr>
+    <tr>
+      <td>Birr {{houses.price}}</td>
+      <td>{{houses.city.name}}</td>
+      <td><i class="fa fa-bath"></i>{{houses.bathRooms}}</td>
+    </tr>
+    <tr>
+      <td>{{houses.type.title}}</td>
+      <td>House For: {{houses.houseFor}}</td>
+    </tr>
+  </tbody>
+   </table>
+            </ng-template>
+          </ngb-tab>
+         <ngb-tab>
+            <ng-template ngbTabTitle>
+              <i class="mdi mdi-information-outline"></i> About the Environment
+            </ng-template>
+            <ng-template ngbTabContent>
+           <br>
+           <p>{{houses.description}}</p>
+         <table class="table">
+  <tbody>
+    <tr>
+      <td>Address: {{houses.address}}</td>
+      <td><i class="fa fa-bed"></i>{{houses.bedRooms}} Bed Rooms</td>
+    </tr>
+    <tr>
+      <td><i class="fa fa-bath"></i>{{houses.bathRooms}} Bath Rooms</td>
+    </tr>
+    <tr>
+      <td>Owner: {{houses.owner}}</td>
+      <td>Owner email: {{houses.email}}</td>
+      <td>Owner Phone Number: {{houses.phoneNo}}</td>
+    </tr>
+</tbody>
+</table>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
+    </div>
+  </div>

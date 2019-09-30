@@ -1,0 +1,18 @@
+<h3 class="text-center text-success">Add a New State</h3>
+<div class="container border-main border-box-manage card">
+  <form class="" [formGroup]="createForm"  (ngSubmit)="registration(createForm)" (change)="log(createForm)">
+    <h4 class="text-center text-success">State Information </h4>
+<div *ngIf="mainErrorMessage">
+            <p class="alert alert-{{ mainErrorMessage.type }}">{{ mainErrorMessage.message }}</p>
+        </div>
+    <hr class="hr">
+    <div class="form-group">
+      <label for="" class="col-md-4">name</label>
+      <input type="text" [appInputFormat]="'singleWordFiltercapitalize'" formControlName="name"
+        placeholder="Enter The Name of The State" class="form-control" style="border-radius: 1rem" required >
+      <small class="text-danger" *ngIf="name.touched && name.invalid">
+        State Name is Required</small>
+    </div>
+    <button [disabled]="!createForm.valid" class="btn btn-success btn-block btn-rounded"><i class="fa fa-plus" style="color: #800000"></i>Add A New State</button>
+  </form>
+</div>

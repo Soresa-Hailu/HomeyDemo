@@ -1,0 +1,22 @@
+<div class="row">
+<div class="col-md-4 grid-margin stretch-card" *ngFor="let house of houses">
+  <div class="card">
+    <img class="card-img-top" src="{{commonService.base_url}}/house/showGFSImage/{{ house.images[0] }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><b>Birr {{house.price}}</b></h5>
+      <p class="card-text">{{house.title}}</p>
+      <p class="card-text"><i class="fa fa-bath"></i> {{house.bathRooms}}, <i class="fa fa-bed"></i> {{house.bedRooms}}, <i class="fa fa-building"></i> {{(house.length)*(house.breadth)}}sqft</p>
+      <p class="card-text"><i class="fa fa-phone"></i> {{house.userId.phoneNo}}</p>
+      <p class="card-text"><small class="text-muted">{{getFormattedDate(house.createdOn)}}</small></p>
+      <a [routerLink]="['/homier/view-resumed-house', house._id]" class="btn btn-rounded btn-success"><i class="fa fa-eye"></i>View</a>
+     <button *ngIf="house?.status == 'accepted';" (click)="markAsRejected(house?._id, house?.status)"
+            class="btn btn-success btn-sm btn-rounded"><i class="fa fa-ban" style="color: red"></i><small>
+              {{ house?.status == 'accepted' ? 'Reject' : 'Posted' }}</small></button>
+    <button *ngIf="house?.status == 'rejected';" (click)="markAsAccepted(house?._id, house?.status)"
+            class="btn btn-success btn-sm btn-rounded"><i class="fa fa-check-circle" ></i><small>
+              {{ house?.status == 'rejected' ? 'Posted' : 'Reject' }}</small></button>
+    <a [routerLink]="['/homier/post-client-house', house._id]" class="btn btn-rounded btn-primary btn-sm"><i class="fa fa-paper-plane-o"></i>Post</a>
+    </div>
+  </div>
+ 
+</div>

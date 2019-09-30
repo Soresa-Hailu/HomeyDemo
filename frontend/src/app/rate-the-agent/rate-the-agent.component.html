@@ -1,0 +1,8 @@
+  <div *ngIf="mainErrorMessage">
+<p class=" alert alert-{{mainErrorMessage.type}}">{{mainErrorMessage.message}}</p>
+</div>
+  <p>
+  <ngb-rating [(rate)]="currentRate" class="rating" name="rating" ngModel #rating="ngModel" ></ngb-rating>
+    <a (click)="rateAgent(rating.value, dangerous)" href="javascript:void(0)" class="btn btn-primary">Submit<i class="fa fa-star"></i></a>  
+    </p>
+    

@@ -1,0 +1,21 @@
+<div class="row">
+<div *ngIf="mainErrorMessage">
+<p class=" alert alert{{mainErrorMessage.type}}">{{mainErrorMessage.message}}</p>
+</div>
+
+<div class="col-md-4 grid-margin stretch-card" *ngFor="let house of houses">
+  <div class="card">
+    <img class="card-img-top" src="{{commonService.base_url}}/house/showGFSImage/{{ house.images[0] }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><b>Birr {{house.price}}</b></h5>
+      <p class="card-text">{{house.title}}</p>
+      <p class="card-text"><i class="fa fa-bath"></i> {{house.bathRooms}}, <i class="fa fa-bed"></i> {{house.bedRooms}}, <i class="fa fa-building"></i> {{(house.length)*(house.breadth)}}sqft</p>
+      <p class="card-text"><i class="fa fa-phone"></i> {{house.phoneNo}},{{house.owner}}</p>
+      <p class="card-text"><small class="text-muted">{{getFormattedDate(house.createdOn)}}</small></p>
+       <p><input type="number" placeholder="New Price" name="newPrice" ngModel #newPrice="ngModel" >
+    <a (click)="changePrice(house._id, newPrice.value)" href="javascript:void(0)" class="btn btn-success btn-rounded">Update Price<i class="fa fa-refresh"></i></a>  
+    </p>
+     </div>
+  </div>
+ 
+</div>

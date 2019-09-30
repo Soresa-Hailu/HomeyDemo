@@ -1,0 +1,60 @@
+<div class="searchHou-cont">
+  <ngb-carousel>
+        <ng-template ngbSlide>
+          <img src="../../../../../assets/images/1.jpg" alt="Random first slide" class="carousal-img" width="100%">
+        </ng-template>
+        <ng-template ngbSlide>
+          <img src="../../../../../assets/images/2.jpg" alt="Random second slide" class="carousal-img" width="100%">
+        </ng-template>
+        <ng-template ngbSlide>
+          <img src="../../../../../assets/images/3.svg" alt="Random third slide" class="carousal-img" width="100%">
+      </ng-template>
+  </ngb-carousel>
+
+  <div class="container searchHou">
+
+    <form #searchData="ngForm" (ngSubmit)="searchHou(searchData.value)" >
+      <ngb-tabset type="pills">
+        <ngb-tab>
+          <ng-template ngbTabTitle>
+            <label (click)="searchHouData.houseFor = 'sell'" >BUY</label>
+          </ng-template>
+          <ng-template ngbTabContent>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle>
+            <label (click)="searchHouData.houseFor = 'rent'" >RENT</label>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle><label><b (click)="router.navigate(['/users/house/new'])">POST A HOUSE</b></label></ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+      <div class="text-center searchFields">
+        <div class="form-group">
+            <input id="typeahead-basic" placeholder="Enter a location" type="text" class="rounded-left" ngModel #location="ngModel" name="city" [value]="searchHouData.location" [ngbTypeahead]="search" />
+<select ngModel #city="ngModel" style="width: auto;" name="type" class="custom-select searchType rounded-0 p-cursor">
+            <option value="">House Type</option>
+            <option *ngFor="let type of houseTypeList" [value]="type._id">{{ type.title }}</option>
+          </select>
+
+          <button class="btn btn-danger searchButton rounded-1 rounded-right">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="mar-top-40">
+    <h4 class="text-danger">Recent Postings:</h4>
+    <hr class="hr">
+    <!-- <p>{{ searchPropData | json }}</p>
+    <p>{{ cityList | json }}</p> -->
+
+    <div ngbSlide >
+      <app-houselist [blockView]="true" [blockSize]="4" [hideOwnHouse]="hideOwnHouse" [queryParams]="queryParams" ></app-houselist>
+    </div>
+  </div>
+</div>

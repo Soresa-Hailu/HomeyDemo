@@ -1,0 +1,96 @@
+<a (click)="sendEmail(dangeorus)" href="javascript: void(0)" class="btn btn-primary">Send<i class="fa fa-mail"></i></a>
+
+
+
+<h3 class="text-center text-success">Add a New Staff Information</h3>
+<div class="container border-main border-box-manage card">
+  <form class="" [formGroup]="createForm"  (ngSubmit)="registration(createForm)" (change)="log(createForm)">
+    <h4 class="text-center text-success">Staff Information </h4>
+<div *ngIf="mainErrorMessage">
+            <p class="alert alert-{{ mainErrorMessage.type }}">{{ mainErrorMessage.message }}</p>
+        </div>
+    <hr class="hr">
+    <div class="form-group">
+      <label for="" class="col-md-4">First Name</label>
+      <input type="text" [appInputFormat]="'singleWordFiltercapitalize'" formControlName="fname"
+        placeholder="Enter The First Name" class="form-control" style="border-radius: 1rem" required >
+
+      <small class="text-danger" *ngIf="fname.touched && fname.invalid">
+        First Name is required</small>
+    </div>
+    <div class="form-group">
+      <label for="" class="col-md-4">Last Name</label>
+        <input type="text" [appInputFormat]="'singleWordFiltercapitalize'" formControlName="lName" class="form-control" placeholder="Enter Last Name" style="border-radius: 1rem" required>
+        <small class="text-danger"
+     *ngIf="lName.touched && lName.invalid"  >
+    Last Name is required</small>
+    </div>
+    <div class="form-group">
+      <label for="" class="col-md-4">Email</label>
+      <input type="email" formControlName="email"
+        placeholder="Enter The Email" class="form-control" style="border-radius: 1rem" required>
+<span *ngIf="email.pending" class="input-icon"><i class="fa fa-spinner fa-spin fa-2x fa-fw" ></i></span>
+      <small class="text-danger" *ngIf="email.touched && email.invalid">
+        <small *ngIf="email.errors.required" >Email is required</small>
+                    <small *ngIf="email.errors.email" >Please enter a valid email address</small>
+                    <small *ngIf="email.errors.checkAgentEmailAvailability" >This email address is already taken</small>
+</small>
+    </div>
+   <div class="form-group">
+      <label for="" class="col-md-4">Phone Number</label>
+      <input type="number" formControlName="phoneNo" (change)="log(phoneNo)"
+        placeholder="Enter The Phone Number"  class="form-control remove-numbr-icn" minlength="10" style="border-radius: 1rem" required>
+
+      <small class="text-danger" *ngIf="phoneNo.touched && phoneNo.invalid">
+        Phone Number is required</small>
+    </div>
+   <div class="form-group">
+      <label for="" class="col-md-4">Password</label>
+      <input type="text" name="password" formControlName="password"
+        placeholder="Enter The Password"  class="form-control" style="border-radius: 1rem" minlength="8" required>
+      <small class="text-danger" *ngIf="password.touched && password.invalid">
+        Password is required</small>
+    </div>
+ <div class="form-group">
+        <label for="">Agent Type</label>
+        <select name="agentType" formControlName="agentType" class="custom-select border-success" style="border-radius: 1rem">
+          <option value="">Select Type</option>
+          <option value="realtor">Realtor</option>
+          <option value="homier">Homier</option>
+          <option value="admin">Super Admin</option>
+        </select>
+        <small class="text-danger" *ngIf="agentType.touched && agentType.invalid">
+          Please Specify the Agent Type</small>
+    </div>
+    <h4 class="text-center text-success">Location</h4>
+    <hr class="hr">
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="">State</label>
+        <select name="state" formControlName="state" (change)="getCityList(state.value)"
+          class="custom-select border-success" style="border-radius: 1rem">
+          <option value="">Select State</option>
+          <option *ngFor="let state of stateList" value="{{state._id}}">{{state.name}}</option>
+        </select>
+        <small class="text-danger" *ngIf="state.touched && state.invalid">
+          State is required</small>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="">City<small *ngIf="FetchingCityList"><i class="fa fa-refresh fa-spin fa-fw"></i></small></label>
+        <select name="city" formControlName="city" class="custom-select border-success" style="border-radius: 1rem">
+          <option value="">Select City</option>
+          <option *ngFor="let city of cityList" value="{{city._id}}">{{city.name}}</option>
+        </select>
+        <small class="text-danger" *ngIf="city.touched && city.invalid">
+          City is required</small>
+      </div>
+    </div>
+     <div class="form-group col-md-4">
+      <ngb-rating [(rate)]="currentRate" class="rating" formControlName="rating"></ngb-rating>
+      <hr>
+   <pre>Rating: <b>{{currentRate}}</b></pre>
+      </div>
+    <button [disabled]="!createForm.valid" class="btn btn-success btn-block btn-rounded"><i class="fa fa-sign-in" style="color: #800000"></i>Add A New Homey Staff</button>
+  </form>
+</div>

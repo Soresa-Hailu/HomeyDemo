@@ -1,0 +1,38 @@
+<div class="pb-5">
+<app-client-menu></app-client-menu>
+</div>
+<main>
+<div class="container pt-5 pb-5">
+<h3 class="text-center text-denger">Mortgage Calculator</h3>
+<div class="container border-main border-box-manage card">
+  <form>
+ <div class="form-group">
+
+  <label for="">APR%</label>
+   <input type="number" min="0" (keyup)="mortgage()" [(ngModel)]="mortgageData.apr"  name="apr" required placeholder="Enter the Apr" class="form-control form-field-small">
+</div>
+ <div class="form-group">
+  <label for="">Loan Term</label>
+   <input type="number" min="0" (keyup)="mortgage()" [(ngModel)]="mortgageData.term" name="term" required placeholder="Enter the term" class="form-control form-field-small">
+</div>
+
+<div class="form-group">
+<label for="">Loan Amount</label>
+   <input type="number" min="0" (keyup)="mortgage()" [(ngModel)]="mortgageData.amt" name="amt" required placeholder="Enter the amt" class="form-control form-field-small">
+</div>
+<div class="col-md-6">
+  <h3 *ngIf="mortgageData.apr && mortgageData.term && mortgageData.amt"> {{ mortgage }} Birr </h3>
+</div>
+<div style="display: block">
+  <canvas baseChart
+              [data]="[mortgage]"
+              [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType"></canvas>
+</div>
+</form>
+</div>
+</div>
+</main>
+<app-footer-main></app-footer-main>
+
+

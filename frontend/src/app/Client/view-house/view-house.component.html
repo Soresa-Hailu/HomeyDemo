@@ -1,0 +1,185 @@
+<div class="pb-5">
+<app-client-menu></app-client-menu>
+</div>
+<main>
+<div class=" pt-5 pb-5">
+<p> <a [routerLink]="['/']" class="btn btn-success btn-rounded"><i class="fa fa-angle-double-left custom" style="color: #800000;"></i>Back to home</a>
+ ( For {{houses.houseFor}} > Birr {{houses.price}} > {{houses.owner}} > {{(houses.breadth) *(houses.length)}} sqft > {{houses.title}} ) <a [routerLink]="['/melemameja']" class="btn btn-success btn-rounded"><i class="fa fa-eye" style="color: #800000;"></i>360 view</a></p>
+ 
+<div class="row"> 
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-center">{{houses.title}}</h4>
+        <ngb-tabset class="tab-solid tab-solid-primary" type="pills">
+          <ngb-tab>
+            <ng-template ngbTabTitle>
+              <i class="mdi mdi-image-filter"></i> House Photos
+            </ng-template>
+            <ng-template ngbTabContent>
+              <mdb-carousel [animation]="'slide'" >
+ <mdb-carousel-item *ngFor="let h of houses.images">
+    <img class="d-block w-100" src="{{commonService.base_url}}/house/showGFSImage/{{h}}"  style="height: 350px" alt="First slide">
+  </mdb-carousel-item>
+</mdb-carousel>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab>
+            <ng-template ngbTabTitle>
+              <i class="mdi mdi-map-marker-radius"></i> Map View
+            </ng-template>
+            <ng-template ngbTabContent>
+              <agm-map [latitude]="houses.latitude" [longitude]="houses.longitude" [zoom]="15" [mapTypeId]="'roadmap'" style="height: 350px">
+                    <agm-marker [latitude]="houses.latitude" [longitude]="houses.longitude" >
+                    <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
+                    <ng-template>
+                    <img class="w-100 img-thumbnail" src="{{commonService.base_url}}/house/showGFSImage/{{houses.images[0]}}"  alt="image for google map">{{houses.title}}, {{(houses.length)*(houses.breadth)}}sqft
+  </ng-template>
+  
+  </agm-snazzy-info-window>
+</agm-marker>
+
+                </agm-map>
+            </ng-template>
+          </ngb-tab>
+            <ngb-tab>
+            <ng-template ngbTabTitle>
+              <i class="mdi mdi-satellite-variant"></i> Sattelite View
+            </ng-template>
+            <ng-template ngbTabContent>
+             <agm-map [latitude]="houses.latitude" [longitude]="houses.longitude" [zoom]="23" [mapTypeId]="'satellite'" style="height: 350px">
+                    <agm-marker [latitude]="houses.latitude" [longitude]="houses.longitude"></agm-marker>
+                </agm-map>
+            </ng-template>
+          </ngb-tab>
+           <ngb-tab>
+            <ng-template ngbTabTitle>
+              <i class="fa fa-map"></i> Hybrid View
+            </ng-template>
+            <ng-template ngbTabContent>
+             <agm-map [latitude]="houses.latitude" [longitude]="houses.longitude" [zoom]="18" [mapTypeId]="'hybrid'" style="height: 350px">
+                    <agm-marker [latitude]="houses.latitude" [longitude]="houses.longitude"></agm-marker>
+                </agm-map>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab>
+            <ng-template ngbTabTitle>
+              <i class="mdi mdi-movie"></i> House Description
+            </ng-template>
+            <ng-template ngbTabContent>
+             <table class="table">
+  <tbody>
+    <tr>
+      <td>{{houses.title}}</td>
+      <td>{{houses.state.name}}</td>
+      <td><i class="fa fa-bed"></i>{{houses.bedRooms}}</td>
+    </tr>
+    <tr>
+      <td>Birr {{houses.price}}</td>
+      <td>{{houses.city.name}}</td>
+      <td><i class="fa fa-bath"></i>{{houses.bathRooms}}</td>
+    </tr>
+    <tr>
+      <td>{{houses.type.title}}</td>
+      <td>House For: {{houses.houseFor}}</td>
+      <td><ngb-rating [(rate)]="houses.rating" [readonly]=true class="rating"></ngb-rating><button class="btn btn-primary" (click)="opentipModal()">Tip</button></td>
+    </tr>
+  </tbody>
+   </table>
+            </ng-template>
+          </ngb-tab>
+         <ngb-tab>
+            <ng-template ngbTabTitle>
+              <i class="mdi mdi-information-outline"></i> About the Environment
+            </ng-template>
+            <ng-template ngbTabContent>
+           <br>
+           <p>{{houses.description}}</p>
+         <table class="table">
+  <tbody>
+    <tr>
+      <td>Address: {{houses.address}}</td>
+      <td><i class="fa fa-school"></i>{{houses.numberOfSchools}} Schools</td>
+      <td><i class="fa fa-bed"></i>{{houses.bedRooms}} Bed Rooms</td>
+    </tr>
+    <tr>
+      <td>{{houses.numberOfHospitals}} Hospitals</td>
+      <td>{{houses.numberOfShop}} Shops</td>
+      <td><i class="fa fa-bath"></i>{{houses.bathRooms}} Bath Rooms</td>
+    </tr>
+    <tr>
+      <td>Owner: {{houses.owner}}</td>
+      <td>Owner email: {{houses.email}}</td>
+      <td>Owner Phone Number: {{houses.phoneNo}}</td>
+    </tr>
+</tbody>
+</table>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="houses.wantAgent=='yes'">
+  <div class="col-md-12">
+        <!--Card-->
+         <div *ngIf="mainErrorMessage">
+            <p class="alert alert-{{ mainErrorMessage.type }}">{{ mainErrorMessage.message }}</p>
+        </div>
+        <div class="card card-cascade narrower mt-5">
+
+            <!--Card image-->
+            <div class="view gradient-card-header">
+                <h4 class="h4-responsive text-center">Choose Your Agent</h4>
+            </div>
+            <!--/Card image-->
+
+            <!--Card content-->
+            <div class="card-body text-center" *ngFor="let agent of agents">
+            
+                <table class="table table-striped">
+               <thead>
+             <tr>
+      <th scope="col" class="text-success">{{agent.fname}} {{agent.lname}}</th>
+           </tr>
+               </thead>
+                  <tbody>
+                 <tbody>
+                
+            <td>(+251) {{agent.phoneNo}}</td>
+            <td>{{agent.numberOfSell}} sells</td>
+            <td><ngb-rating [(rate)]="agent.rating" [readonly]=true class="rating"></ngb-rating></td>
+            <td *ngIf="userService.currentUser.user.confirmed=='confirmed'"><a *ngIf="loginService.isLoggedIn();" (click)="requestHouse(houses._id,userService.currentUser.user._id, agent._id, destiny)" class="" href="javascript:void(0)"><i class="fa fa-comments-o" style="color: green"></i></a></td>
+               </tbody>
+            </table>
+            </div>
+            <!--/.Card content-->
+        </div>
+</div>
+
+</div>
+<h3>Related Houses</h3>
+<div class="row">
+<div class="col-md-2 grid-margin stretch-card" *ngFor="let relates of related">
+  <div class="card">
+    <img class="card-img-top" src="{{commonService.base_url}}/house/showGFSImage/{{ relates.images[0] }}" alt="Card image cap">
+     <div class="card-body">
+      <h5 class="card-title"><b>Birr {{relates.price}}</b></h5>
+      <p class="card-text">{{relates.title}}</p>
+      <p class="card-text"><i class="fa fa-bath"></i> {{relates.bathRooms}}, <i class="fa fa-bed"></i> {{relates.bedRooms}}, <i class="fa fa-building"></i> {{(relates.length)*(relates.breadth)}}sqft</p>
+      <a [routerLink]="['/view-house', relates._id, relates.city]" class="btn btn-rounded btn-success"><i class="fa fa-eye"></i>View</a>
+      <a *ngIf="loginService.isLoggedIn()" (click)="likedByUsers(relates._id, userService.currentUser.user._id)" href="javascript:void(0)" class=""><i class="fa fa-heart" style="color: green"></i></a>
+      <p class="card-text text-muted">{{relates.likesByUsers.length}} Likes</p>
+    </div>
+    
+ <div class="card-footer">
+      <small class="text-muted">{{getFormattedDate(relates.createdOn)}}</small>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</main>
+<app-footer-main></app-footer-main>

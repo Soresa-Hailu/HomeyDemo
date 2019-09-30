@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-row">
+          <!-- works -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div>
+        <div class="float-right">    
+          <span (click)="isEditing = true" [hidden]="isEditing" class="badge badge-primary p-cursor">Edit</span>          
+        </div>
+        <form #updateProfile="ngForm" (ngSubmit)="updateProfilefn(updateProfile.value)" >        
+          <table class="table updateProfileForm">
+            <tr>
+              <th>Name</th>
+              <td *ngIf="!isEditing">{{ UserDetails.fname }} {{ UserDetails.lname }}</td>
+              <td [hidden]="!isEditing">
+                <input type="text" #fname="ngModel" name="fname" class="form-control" [(ngModel)]="UserDetails.fname" placeholder="Enter First Name" required>
+                <small class="text-danger" *ngIf="fname.touched && fname.invalid">
+                    This field is required</small>
+              </td>
+              <td [hidden]="!isEditing">
+                  <input type="text"  #lname="ngModel" name="lname" [(ngModel)]="UserDetails.lname" class="form-control" placeholder="Enter Last Name" required>
+                  <small class="text-danger" *ngIf="lname.touched && lname.invalid">
+                      This field is required</small>
+              </td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td *ngIf="!isEditing">{{ UserDetails.email }}</td>
+              <td [hidden]="!isEditing">
+                  <input type="text" class="form-control" value="{{ UserDetails.email }}" readonly >
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Phone Number</th>
+              <td *ngIf="!isEditing">{{ UserDetails.phoneNo }}</td>
+              <td [hidden]="!isEditing">
+                  <input type="text" class="form-control" value="{{ UserDetails.phoneNo }}" readonly >
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td [hidden]="!isEditing">
+                <button class="btn btn-primary" [disabled]="!updateProfile.valid">Update Profile</button>
+                <span (click)="isEditing = false" class="btn btn-primary p-cursor">Cancel</span>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+        </form>
+        <small class="float-right"><b>Last Updated: </b> {{ lastEdited }}</small>
+    </div>    
+  </div>

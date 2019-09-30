@@ -1,0 +1,81 @@
+<div class="signup-form">
+    <h2>Create an Account</h2>
+    <form class="" [formGroup]="registrationForm" (ngSubmit)="registration(registrationForm)" (change)="log(registrationForm)" >
+        <div *ngIf="mainErrorMessage">
+            <p class="alert alert-{{ mainErrorMessage.type }}">{{ mainErrorMessage.message }}</p>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+<span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" formControlName="fname" class="form-control"  placeholder="Enter First Name" required>
+                <small class="text-danger"
+             *ngIf="fname.touched && fname.invalid"  >
+            This field is required</small>
+            </div>
+</div>
+            <div class="form-group">
+            <div class="input-group">
+<span class="input-group-addon"><i class="fa fa-plus-circle"></i></span>
+                <input type="text" formControlName="lName" class="form-control" placeholder="Enter Last Name" required>
+                <small class="text-danger"
+             *ngIf="lName.touched && lName.invalid"  >
+            This field is required</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">  
+<span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>                 
+                    <input type="email" formControlName="email" class="form-control" placeholder="Enter Email Address" required >
+                    <span *ngIf="email.pending" class="input-icon"><i class="fa fa-spinner fa-spin fa-2x fa-fw" ></i></span>
+                <small class="text-danger"
+                    *ngIf="email.touched && email.invalid"  >
+                    <small *ngIf="email.errors.required" >This field is required</small>
+                    <small *ngIf="email.errors.email" >Please enter a valid email address</small>
+                    <small *ngIf="email.errors.checkEmailAvailability" >This email address is already taken</small>
+                </small>
+            </div>
+</div>
+            <div class="form-group">
+<div class="input-group">
+<span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                <input formControlName="phoneNo" type="number" (change)="log(phoneNo)"  class="form-control remove-numbr-icn" maxlength="10" placeholder="Enter Phone Number" required >
+                <small class="text-danger"
+                    *ngIf="phoneNo.touched && phoneNo.invalid"  >
+                This field is required</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input  type="password" name="registrationPassword" formControlName="password"   class="form-control" placeholder="Password" required > 
+                <small class="text-danger"
+                    *ngIf="registrationPassword.touched && registrationPassword.invalid"  >
+                This field is required</small>
+            </div>
+</div>
+            <div class="form-group">
+<div class="input-group">
+<span class="input-group-addon">
+	<i class="fa fa-check-circle"></i>
+				</span>
+                <input  type="password" name="registrationcPassword" formControlName="cPassword"  placeholder="Confirm Password" class="form-control" required >
+                <!-- ngModel #registrationcPassword="ngModel" (change)="log(registrationcPassword)"  -->
+                <small class="text-danger"
+                    *ngIf="registrationcPassword.touched && registrationcPassword.invalid"  >
+                This field is required</small>
+
+                <span class="text-danger"
+                    *ngIf="registrationForm.errors && registrationcPassword.touched">    
+                    <small *ngIf="registrationForm.errors.passwordMatch" > Password do not match</small>
+                    <!-- registrationForm.status === 'INVALID' -->
+                </span>                
+            </div>
+        </div>
+       
+        
+        <div class="form-group">               
+                <button class="btn btn-success form-control" [disabled]="!registrationForm.valid" >Sign up</button>
+            </div>
+        <p class="small text-center">By clicking the Sign Up button, you agree to our <br><a href="https://termsandconditionsgenerator.com/live.php?token=HzhQGwS2aAHmS113t9584Hcscrl4H1dq">Terms &amp; Conditions</a>, and <a href="https://privacypolicygenerator.info/live.php?token=BiYjvktBCyXM3zmlncEkXroySzsFO0o6">Privacy Policy</a>.</p>
+    </form>
+</div>

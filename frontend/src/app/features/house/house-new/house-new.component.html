@@ -1,0 +1,148 @@
+<h3 class="text-center text-danger">Post a New House</h3>
+<p>{{ f.value | json }}</p>
+<div class="container border-main border-box-manage card">
+  <form #f="ngForm" (ngSubmit)="submitForm(f)" enctype="multipart/form-data">
+    <h4>House Information </h4>
+    <hr class="hr">
+    <div class="form-group">
+      <label for="">House Title:</label>
+      <input type="text" ngModel #title="ngModel" name="title" (change)="log(title.value)"
+        placeholder="Enter house's title" required class="form-control">
+
+      <small class="text-danger" *ngIf="title.touched && title.invalid">
+        This field is required</small>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-4">
+          <label for=""> House For: </label> <br>
+          <label> <input type="radio" ngModel #for="ngModel" required name="for" value="sell"> Sell </label> &nbsp;
+          <label> <input type="radio" ngModel #for="ngModel" required name="for" value="rent"> Rent </label>
+
+          <small class="text-danger" *ngIf="for.touched && for.invalid">
+            This field is required</small>
+        </div>
+        <div class="col-4">
+          <label for="">House Type:</label>
+          <select required name="type" [(ngModel)]="houseFormData.type" #type="ngModel" class="custom-select">
+            <option value="">Select House Type</option>
+            <option *ngFor="let house of houseTypeList" value="{{house._id}}">{{house.title}}</option>
+          </select>
+
+          <small class="text-danger" *ngIf="type.touched && type.invalid">
+            This field is required</small>
+        </div>
+        <div class="col-4">
+          <label for="">Enter The Price</label>
+          <input type="number" name="price" ngModel #price="ngModel" class="form-control" required>
+          <input type="checkbox" ngModel #Noprice="ngModel" class="form-control"
+            (change)="(Noprice.value) ?  log(Noprice.value) : log(Noprice.value)" name="Noprice">
+        </div>
+      </div>
+    </div>
+
+    <!-- <div *ngIf="propertyFormData.type == '5abbd8585536e81408846d6f'"> -->
+    <h5>Additional Data -</h5>
+    <hr class="hr">
+
+    <div class="form-row form-group">
+      <div class="col-md-6">
+        <p>Plot Dimensions - </p>
+        <div class="row">
+          <div class="col-md-3">
+            <small>Length</small>
+            <input type="number" min="0" (keyup)="plotArea()" [(ngModel)]="houseFormData.length" name="length"
+              required placeholder="Plot length" class="form-control form-field-small">
+          </div>
+          <div class="col-md-3">
+            <small>Breadth</small>
+            <input type="number" min="0" (keyup)="plotArea()" [(ngModel)]="houseFormData.breadth" name="breadth"
+              required placeholder="Plot breadth" class="form-control form-field-small">
+          </div>
+          <div class="col-md-6">
+            <p>Total-</p>
+            <h5 *ngIf="houseFormData.length && houseFormData.breadth">{{ plotArea }} sqMeter</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <p>Corner Plot?</p>
+        <div class="custom-control custom-checkbox">
+          <input class="custom-control-input" id="cornrPlot" type="checkbox">
+          <label class="custom-control-label" for="cornrPlot">Yes</label>
+        </div>
+      </div>
+      <div>
+
+      </div>
+    </div>
+    <!-- </div> -->
+
+    <h4>Location -</h4>
+    <hr class="hr">
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="">State:</label>
+        <select name="state" ngModel #state="ngModel" (change)="getCityList(state.value)" required
+          class="custom-select">
+          <option value="">Select State</option>
+          <option *ngFor="let state of stateList" value="{{state._id}}">{{state.name}}</option>
+        </select>
+        <small class="text-danger" *ngIf="state.touched && state.invalid">
+          This field is required</small>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="">City: <small *ngIf="FetchingCityList"><i class="fa fa-refresh fa-spin fa-fw"></i></small></label>
+        <select name="city" ngModel #city="ngModel" required class="custom-select">
+          <option value="">Select City</option>
+          <option *ngFor="let city of cityList" value="{{city._id}}">{{city.name}}</option>
+        </select>
+        <small class="text-danger" *ngIf="city.touched && city.invalid">
+          This field is required</small>
+      </div>
+    </div>
+
+    <h4>Other Information -</h4>
+    <hr class="hr">
+
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="">Description: </label>
+        <textarea name="description" required ngModel #description="ngModel" class="form-control" cols="30"
+          rows="5"></textarea>
+
+        <small class="text-danger" *ngIf="description.touched && description.invalid">
+          This field is required</small>
+      </div>
+      <div class="form-group col-md-12">
+        <label for="">House Complete Address</label>
+        <input type="text" required name="address" ngModel #address="ngModel"
+          placeholder="Enter complete House's Address" class="form-control">
+
+        <small class="text-danger" *ngIf="address.touched && address.invalid">
+          This field is required</small>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="">Email:</label>
+        <input type="text" placeholder="Enter Email" name="email" ngModel #email="ngModel" required
+          value="{{userService.currentUser.user.email}}" class="form-control">
+
+        <small class="text-danger" *ngIf="email.touched && email.invalid">
+          This field is required</small>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="">Phone Number: </label>
+        <input type="text" ngModel #phoneNo="ngModel" required name="phoneNo" placeholder="Enter Phone Number"
+          value="{{userService.currentUser.user.phoneNo}}" class="form-control">
+
+        <small class="text-danger" *ngIf="phoneNo.touched && phoneNo.invalid">
+          This field is required</small>
+      </div>
+    </div>
+
+    <button [disabled]="f.invalid" class="btn btn-danger btn-block">Post a New House</button>
+
+  </form>
+</div>

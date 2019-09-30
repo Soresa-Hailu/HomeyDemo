@@ -1,0 +1,19 @@
+<div class="row">
+<div class="col-md-4 grid-margin stretch-card" *ngFor="let house of houseList">
+  <div class="card">
+    <img class="card-img-top" src="{{commonService.base_url}}/house/showGFSImage/{{ house.images[0] }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><b>Birr {{house.price}}</b></h5>
+      <p class="card-text">{{house.title}}</p>
+      <p class="card-text"><i class="fa fa-bath"></i> {{house.bathRooms}}, <i class="fa fa-bed"></i> {{house.bedRooms}}, <i class="fa fa-building"></i> {{(house.length)*(house.breadth)}}sqft</p>
+      <p class="card-text"><small class="text-muted">{{house.likesByUsers.length}} Likes</small> </p>
+      <p class="card-text"><small class="text-muted">{{getFormattedDate(house.createdOn)}}</small></p>
+      <a [routerLink]="['/view-house', house._id, house.city]" class="btn btn-rounded btn-success"><i class="fa fa-eye"></i>View</a>
+      <a *ngIf="loginService.isLoggedIn()" (click)="likedByUsers(house._id, userService.currentUser.user._id)" href="javascript:void(0)" class=""><i class="fa fa-heart" style="color: green"></i></a>
+    </div>
+  </div>
+</div>
+</div>
+<div>
+  <h4 *ngIf="houseList.length <= 0" class="text-center text-warning">There is no house by your query please search by another query!</h4>
+</div>
